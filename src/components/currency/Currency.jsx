@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import styles from "./CurrencySystem.module.scss";
+import styles from "./Currency.module.scss";
 import { FaLock, FaCoins, FaExchangeAlt, FaWallet } from "react-icons/fa";
 
-const CurrencySystem = () => {
+const Currency = () => {
   return (
     <section className={styles.currencySection} id="currency">
       <motion.div
@@ -86,4 +86,4 @@ const CurrencySystem = () => {
   );
 };
 
-export default CurrencySystem;
+export default Currency;

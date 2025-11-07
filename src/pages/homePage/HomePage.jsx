@@ -8,7 +8,7 @@ import HelpCenter from '../../components/helpCenter/HelpCenter'
 import OurTeam from '../../components/ourTeam/OurTeam'
 import Connect from '../../components/connect/Connect'
 import Footer from '../../components/footer/Footer'
-import CurrencySystem from '../../components/currencySystem/CurrencySystem'
+import Currency from '../../components/currency/Currency'
 
 
 const HomePage = () => {
@@ -19,7 +19,7 @@ const HomePage = () => {
       <Idea/>
       <CoursesPreview/>
       <Environment/>
-      <CurrencySystem/>
+      <Currency/>
       <HelpCenter/>
       <OurTeam/>
       <Connect/>
