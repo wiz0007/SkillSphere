@@ -4,11 +4,12 @@ import Hero from '../../hero/Hero'
 import Idea from '../../Idea/Idea'
 import CoursesPreview from '../../courses/CoursesPreview'
 import Environment from '../../environment/Environment'
-import CurrencySystem from '../../currencySystem/CurrencySystem'
 import HelpCenter from '../../helpCenter/HelpCenter'
 import OurTeam from '../../ourTeam/OurTeam'
 import Connect from '../../connect/Connect'
 import Footer from '../../footer/Footer'
+import CurrencySystem from '../../currencySystem/CurrencySystem'
+
 
 const HomePage = () => {
   return (
