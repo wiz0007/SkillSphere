@@ -12,7 +12,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Empower Your Future with <span>SkillShare</span>
+          Empower Your Future with <span>Skilora</span>
         </motion.h1>
 
         <motion.p
