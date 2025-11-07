@@ -1,0 +1,120 @@
+@use "../../styles/mixin" as *;
+
+.connectSection {
+  padding: 6rem 4rem;
+  background: linear-gradient(135deg, #eef6ff, #ffffff);
+  text-align: center;
+
+  @media (max-width: 992px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 3rem 1.5rem;
+  }
+
+  .header {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+
+    h2 {
+      @include Text(2.2rem, #1a1a1a);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      @include Text(1.05rem, #555);
+      line-height: 1.8;
+
+      strong {
+        color: #007bff;
+      }
+    }
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem 2rem;
+      flex: 1 1 420px;
+      max-width: 500px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(0, 123, 255, 0.2);
+      }
+
+      .icon {
+        font-size: 3rem;
+        color: #007bff;
+        margin-bottom: 1.2rem;
+      }
+
+      h3 {
+        @include Text(1.4rem, #1a1a1a);
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+      }
+
+      p {
+        @include Text(1rem, #555);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .btnGroup {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        button {
+          border: none;
+          outline: none;
+          cursor: pointer;
+          border-radius: 8px;
+          padding: 0.8rem 1.5rem;
+          font-weight: 600;
+          font-family: "Roboto", sans-serif;
+          transition: all 0.3s ease;
+        }
+
+        .joinBtn {
+          background: #007bff;
+          color: #fff;
+
+          &:hover {
+            background: #0056b3;
+          }
+        }
+
+        .loginBtn {
+          background: #e9f3ff;
+          color: #007bff;
+
+          &:hover {
+            background: #d6e9ff;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,190 @@
+@use "../../styles/mixin" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  transition: all 0.4s ease;
+  z-index: 1000;
+
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.navContainer {
+  @include Flex(row, space-between, center);
+  padding: 1rem 4rem;
+  transition: all 0.4s ease;
+
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
+}
+
+.logo {
+  @include Flex(row, center, center);
+  gap: 0.6rem;
+
+  img {
+    @include Image(40px, 40px);
+  }
+
+  h1 {
+    @include Text(1.5rem, #222);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+}
+
+.navLinks {
+  @include Flex(row, center, center);
+  gap: 2rem;
+  list-style: none;
+  transition: all 0.3s ease;
+
+  li {
+    a {
+      @include Text(1rem, #333);
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background-color: #007bff;
+        left: 0;
+        bottom: -4px;
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        color: #007bff;
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    li {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.navButtons {
+  @include Flex(row, center, center);
+  gap: 1rem;
+
+  .loginBtn,
+  .signupBtn {
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+  }
+
+  .loginBtn {
+    background: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+
+    &:hover {
+      background: #007bff;
+      color: #fff;
+    }
+  }
+
+  .signupBtn {
+    background: #007bff;
+    color: #fff;
+
+    &:hover {
+      background: #0056c4;
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.menuToggle {
+  display: none;
+  cursor: pointer;
+
+  .bar {
+    width: 28px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: all 0.4s ease;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 28px;
+      height: 3px;
+      background-color: #333;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      top: 8px;
+    }
+
+    &.open {
+      background: transparent;
+    }
+
+    &.open::before {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    &.open::after {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+}

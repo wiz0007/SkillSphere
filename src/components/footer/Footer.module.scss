@@ -1,0 +1,136 @@
+@use "../../styles/mixin" as *;
+
+.footer {
+  background: linear-gradient(135deg, #0b0c10, #1f2833);
+  color: #c5c6c7;
+  padding: 4rem 6rem 2rem;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  z-index: 10;
+
+  @media (max-width: 992px) {
+    padding: 3rem 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 2rem 1.5rem;
+  }
+
+  .top {
+    @include Flex(row, space-between, flex-start);
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 768px) {
+      @include Flex(column, center, center);
+      text-align: center;
+    }
+  }
+
+  .brand {
+    flex: 1 1 300px;
+    max-width: 350px;
+
+    h2 {
+      @include Text(1.8rem, #66fcf1);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      @include Text(0.95rem, #c5c6c7);
+      line-height: 1.6;
+    }
+  }
+
+  .links {
+    flex: 1 1 200px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+
+    h4 {
+      @include Text(1.2rem, #45a29e);
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 0.4rem 0;
+
+        a {
+          color: #c5c6c7;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #66fcf1;
+          }
+        }
+      }
+    }
+  }
+
+  .contact {
+    flex: 1 1 250px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+
+    h4 {
+      @include Text(1.2rem, #45a29e);
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      @include Text(0.95rem, #c5c6c7);
+      margin: 0.3rem 0;
+
+      a {
+        color: #66fcf1;
+        text-decoration: none;
+      }
+    }
+
+    .socials {
+      margin-top: 0.8rem;
+      a {
+        color: #c5c6c7;
+        font-size: 1.2rem;
+        margin-right: 0.8rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #66fcf1;
+        }
+      }
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+  }
+
+  .bottom {
+    text-align: center;
+
+    p {
+      @include Text(0.9rem, #c5c6c7);
+      margin: 0.3rem 0;
+
+      &:last-child {
+        color: #66fcf1;
+      }
+    }
+  }
+}

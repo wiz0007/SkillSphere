@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.helpCenter {
+  padding: 6rem 4rem;
+  background: linear-gradient(135deg, #ffffff, #f7faff);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Decorative floating background */
+}
+@media (max-width: 992px) {
+  .helpCenter {
+    padding: 4rem 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .helpCenter {
+    padding: 3rem 1.5rem;
+  }
+}
+.helpCenter .header {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+.helpCenter .header h2 {
+  font-size: 2.2rem;
+  color: #1a1a1a;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+@media (max-width: 992px) {
+  .helpCenter .header h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .helpCenter .header h2 {
+    font-size: 1.6rem;
+  }
+}
+.helpCenter .header p {
+  font-size: 1.05rem;
+  color: #444;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.8;
+}
+.helpCenter .header p strong {
+  color: #007bff;
+}
+@media (max-width: 992px) {
+  .helpCenter .header p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .helpCenter .header p {
+    font-size: 0.95rem;
+  }
+}
+.helpCenter .features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .helpCenter .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .helpCenter .features {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+.helpCenter .features .card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.helpCenter .features .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0, 123, 255, 0.15);
+}
+.helpCenter .features .card .icon {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .helpCenter .features .card .icon {
+    font-size: 2rem;
+  }
+}
+.helpCenter .features .card h4 {
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.helpCenter .features .card p {
+  font-size: 0.95rem;
+  color: #555;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+.helpCenter::before, .helpCenter::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0.12), transparent);
+  z-index: 0;
+  animation: floaty 8s ease-in-out infinite alternate;
+}
+.helpCenter::before {
+  top: -80px;
+  left: -100px;
+}
+.helpCenter::after {
+  bottom: -80px;
+  right: -100px;
+  animation-delay: 3s;
+}
+
+@keyframes floaty {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(40px);
+  }
+}/*# sourceMappingURL=HelpCenter.module.css.map */

@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.footer {
+  background: linear-gradient(135deg, #0b0c10, #1f2833);
+  color: #c5c6c7;
+  padding: 4rem 6rem 2rem;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  z-index: 10;
+}
+@media (max-width: 992px) {
+  .footer {
+    padding: 3rem 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .footer {
+    padding: 2rem 1.5rem;
+  }
+}
+.footer .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+@media (max-width: 768px) {
+  .footer .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+.footer .brand {
+  flex: 1 1 300px;
+  max-width: 350px;
+}
+.footer .brand h2 {
+  font-size: 1.8rem;
+  color: #66fcf1;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+.footer .brand p {
+  font-size: 0.95rem;
+  color: #c5c6c7;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+.footer .links {
+  flex: 1 1 200px;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .footer .links {
+    text-align: center;
+  }
+}
+.footer .links h4 {
+  font-size: 1.2rem;
+  color: #45a29e;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 1rem;
+}
+.footer .links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .links ul li {
+  margin: 0.4rem 0;
+}
+.footer .links ul li a {
+  color: #c5c6c7;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer .links ul li a:hover {
+  color: #66fcf1;
+}
+.footer .contact {
+  flex: 1 1 250px;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .footer .contact {
+    text-align: center;
+  }
+}
+.footer .contact h4 {
+  font-size: 1.2rem;
+  color: #45a29e;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 0.8rem;
+}
+.footer .contact p {
+  font-size: 0.95rem;
+  color: #c5c6c7;
+  font-family: "Roboto", sans-serif;
+  margin: 0.3rem 0;
+}
+.footer .contact p a {
+  color: #66fcf1;
+  text-decoration: none;
+}
+.footer .contact .socials {
+  margin-top: 0.8rem;
+}
+.footer .contact .socials a {
+  color: #c5c6c7;
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  transition: color 0.3s ease;
+}
+.footer .contact .socials a:hover {
+  color: #66fcf1;
+}
+.footer .divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+}
+.footer .bottom {
+  text-align: center;
+}
+.footer .bottom p {
+  font-size: 0.9rem;
+  color: #c5c6c7;
+  font-family: "Roboto", sans-serif;
+  margin: 0.3rem 0;
+}
+.footer .bottom p:last-child {
+  color: #66fcf1;
+}/*# sourceMappingURL=Footer.module.css.map */

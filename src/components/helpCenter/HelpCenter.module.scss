@@ -1,0 +1,141 @@
+@use "../../styles/mixin" as *;
+
+.helpCenter {
+  padding: 6rem 4rem;
+  background: linear-gradient(135deg, #ffffff, #f7faff);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 3rem 1.5rem;
+  }
+
+  .header {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+
+    h2 {
+      @include Text(2.2rem, #1a1a1a);
+      font-weight: 700;
+      margin-bottom: 1rem;
+
+      @media (max-width: 992px) {
+        font-size: 2rem;
+      }
+
+      @media (max-width: 600px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    p {
+      @include Text(1.05rem, #444);
+      line-height: 1.8;
+
+      strong {
+        color: #007bff;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 600px) {
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 24px rgba(0, 123, 255, 0.15);
+      }
+
+      .icon {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+
+        @media (max-width: 600px) {
+          font-size: 2rem;
+        }
+      }
+
+      h4 {
+        @include Text(1.2rem, #1a1a1a);
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+      }
+
+      p {
+        @include Text(0.95rem, #555);
+        line-height: 1.6;
+      }
+    }
+  }
+
+  /* Decorative floating background */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.12), transparent);
+    z-index: 0;
+    animation: floaty 8s ease-in-out infinite alternate;
+  }
+
+  &::before {
+    top: -80px;
+    left: -100px;
+  }
+
+  &::after {
+    bottom: -80px;
+    right: -100px;
+    animation-delay: 3s;
+  }
+}
+
+@keyframes floaty {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(40px);
+  }
+}

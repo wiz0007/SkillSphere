@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  transition: all 0.4s ease;
+}
+@media (max-width: 768px) {
+  .navContainer {
+    padding: 1rem 2rem;
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+.logo img {
+  height: 40px;
+  width: 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.logo h1 {
+  font-size: 1.5rem;
+  color: #222;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  transition: all 0.3s ease;
+}
+.navLinks li a {
+  font-size: 1rem;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.navLinks li a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #007bff;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s ease;
+}
+.navLinks li a:hover {
+  color: #007bff;
+}
+.navLinks li a:hover::after {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .navLinks {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+  }
+  .navLinks.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .navLinks li {
+    margin: 1rem 0;
+  }
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.navButtons .loginBtn,
+.navButtons .signupBtn {
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+}
+.navButtons .loginBtn {
+  background: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+.navButtons .loginBtn:hover {
+  background: #007bff;
+  color: #fff;
+}
+.navButtons .signupBtn {
+  background: #007bff;
+  color: #fff;
+}
+.navButtons .signupBtn:hover {
+  background: #0056c4;
+  transform: translateY(-2px);
+}
+@media (max-width: 900px) {
+  .navButtons {
+    display: none;
+  }
+}
+
+.menuToggle {
+  display: none;
+  cursor: pointer;
+}
+.menuToggle .bar {
+  width: 28px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+.menuToggle .bar::before, .menuToggle .bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 28px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+.menuToggle .bar::before {
+  top: -8px;
+}
+.menuToggle .bar::after {
+  top: 8px;
+}
+.menuToggle .bar.open {
+  background: transparent;
+}
+.menuToggle .bar.open::before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menuToggle .bar.open::after {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+@media (max-width: 900px) {
+  .menuToggle {
+    display: block;
+  }
+}/*# sourceMappingURL=Navbar.module.css.map */

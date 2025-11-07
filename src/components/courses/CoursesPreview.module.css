@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.coursesPreview {
+  padding: 6rem 4rem;
+  background: #f9fbff;
+  text-align: center;
+}
+@media (max-width: 992px) {
+  .coursesPreview {
+    padding: 4rem 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .coursesPreview {
+    padding: 3rem 1.5rem;
+  }
+}
+.coursesPreview h2 {
+  font-size: 2.2rem;
+  color: #1a1a1a;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+@media (max-width: 992px) {
+  .coursesPreview h2 {
+    font-size: 1.9rem;
+  }
+}
+@media (max-width: 600px) {
+  .coursesPreview h2 {
+    font-size: 1.6rem;
+  }
+}
+.coursesPreview p {
+  font-size: 1.05rem;
+  color: #555;
+  font-family: "Roboto", sans-serif;
+  max-width: 850px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.7;
+}
+@media (max-width: 992px) {
+  .coursesPreview p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .coursesPreview p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
+  margin-bottom: 3rem;
+}
+@media (max-width: 992px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    gap: 1.2rem;
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 123, 255, 0.15);
+}
+.card .imageWrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  .card .imageWrapper {
+    height: 160px;
+  }
+}
+.card .imageWrapper img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card .imageWrapper img:hover {
+  transform: scale(1.05);
+}
+.card .info {
+  padding: 1.4rem;
+  text-align: left;
+}
+.card .info h3 {
+  font-size: 1.1rem;
+  color: #222;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+@media (max-width: 600px) {
+  .card .info h3 {
+    font-size: 1rem;
+  }
+}
+.card .info .category {
+  font-size: 0.9rem;
+  color: #007bff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.card .info .instructor {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 0.6rem;
+}
+.card .info .rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3rem;
+  color: #f5b301;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.ctaWrapper {
+  text-align: center;
+}
+.ctaWrapper .viewAllBtn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.ctaWrapper .viewAllBtn:hover {
+  background: #005fd4;
+  transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+  .ctaWrapper .viewAllBtn {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 0.95rem;
+  }
+}/*# sourceMappingURL=CoursesPreview.module.css.map */

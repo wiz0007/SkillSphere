@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.mainIdea {
+  padding: 6rem 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f4f8ff, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 992px) {
+  .mainIdea {
+    padding: 4rem 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .mainIdea {
+    padding: 3rem 1.5rem;
+  }
+}
+.mainIdea h2 {
+  font-size: 2.2rem;
+  color: #1a1a1a;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+@media (max-width: 992px) {
+  .mainIdea h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .mainIdea h2 {
+    font-size: 1.6rem;
+  }
+}
+.mainIdea p {
+  font-size: 1.05rem;
+  color: #444;
+  font-family: "Roboto", sans-serif;
+  max-width: 850px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.8;
+}
+.mainIdea p strong {
+  color: #007bff;
+}
+@media (max-width: 992px) {
+  .mainIdea p {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .mainIdea p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .cards {
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 340px;
+  flex: 1 1 300px;
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 123, 255, 0.15);
+}
+.card .icon {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .card .icon {
+    font-size: 2rem;
+  }
+}
+.card h3 {
+  font-size: 1.3rem;
+  color: #222;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+@media (max-width: 600px) {
+  .card h3 {
+    font-size: 1.1rem;
+  }
+}
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .card p {
+    font-size: 0.9rem;
+  }
+}/*# sourceMappingURL=Idea.module.css.map */
