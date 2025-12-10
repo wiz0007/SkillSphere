@@ -22,7 +22,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className={styles.logo}>
           <img src={logo} alt="SkillShare" />
-          <h1>Skilora</h1>
+          <h1>SkillSphere</h1>
         </div>
 
         {/* Menu */}
