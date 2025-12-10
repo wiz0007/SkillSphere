@@ -21,7 +21,7 @@ const Idea = () => {
         transition={{ delay: 0.2, duration: 0.6 }}
         viewport={{ once: true }}
       >
-        SkillSphere is a <strong>peer-to-peer (P2P)</strong> learning ecosystem where{" "}
+        SkilSphere is a <strong>peer-to-peer (P2P)</strong> learning ecosystem where{" "}
         <strong>freelancer instructors</strong> can share their expertise and{" "}
         <strong>students</strong> can directly enroll in real-world, skill-focused courses.
         It’s learning and teaching reimagined — by the people, for the people.
@@ -68,7 +68,7 @@ const Idea = () => {
           <FaExchangeAlt className={styles.icon} />
           <h3>For the Community</h3>
           <p>
-            Connect, collaborate, and share. SkillSphere fosters a growing community where
+            Connect, collaborate, and share. SkilSphere fosters a growing community where
             everyone learns, teaches, and inspires one another.
           </p>
         </motion.div>
