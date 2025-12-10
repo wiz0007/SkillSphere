@@ -2,37 +2,41 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./OurTeam.module.scss";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+import ayush from "../../assets/team/ayushImg.jpg"
+import krishna from "../../assets/team/Krishna.png"
+import amandeep from "../../assets/team/amandeep.jpg"
+import vaibhav from "../../assets/team/vaibhav.jpg"
 
 // Static data for now
 const teamMembers = [
   {
-    name: "Aarav Mehta",
+    name: "Ayushmaan Mishra",
     role: "Founder & CEO",
-    img: "https://randomuser.me/api/portraits/men/75.jpg",
-    linkedin: "#",
-    twitter: "#",
-    github: "#",
+    img: ayush,
+    linkedin: "https://www.linkedin.com/in/ayushmaan-mishra-254020257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    twitter: "https://x.com/Ayushma44434272?t=diX25cD-oLYEhuE_-7aLQA&s=08",
+    github: "https://github.com/wiz0007",
   },
   {
-    name: "Priya Sharma",
+    name: "Krishna Kapil",
     role: "Chief Design Officer",
-    img: "https://randomuser.me/api/portraits/women/65.jpg",
+    img: krishna,
     linkedin: "#",
     twitter: "#",
     github: "#",
   },
   {
-    name: "Rohan Gupta",
+    name: "Vaibhav Chauhan",
     role: "Lead Full Stack Developer",
-    img: "https://randomuser.me/api/portraits/men/70.jpg",
+    img: vaibhav,
     linkedin: "#",
     twitter: "#",
     github: "#",
   },
   {
-    name: "Neha Verma",
+    name: "Amandeep Lohan",
     role: "Marketing & Community Head",
-    img: "https://randomuser.me/api/portraits/women/72.jpg",
+    img: amandeep,
     linkedin: "#",
     twitter: "#",
     github: "#",
