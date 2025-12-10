@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Hero.module.scss";
-import heroImg from "../../assets/hero-illustration.png"; // replace with your image path
+import heroImg from "../../assets/skillsphere.png"; // replace with your image path
 
 const Hero = () => {
   return (
