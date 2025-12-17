@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.navContainer}>
         {/* Logo */}
-        <div className={styles.logo}>
+        <div onClick={() =>navigate("/")} className={styles.logo}>
           <img src={logo} alt="SkillShare" />
           <h1>SkilSphere</h1>
         </div>
