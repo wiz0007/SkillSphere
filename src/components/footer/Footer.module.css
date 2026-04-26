@@ -102,22 +102,11 @@
   color: #c5c6c7;
   font-family: "Roboto", sans-serif;
   margin: 0.3rem 0;
+  line-height: 1.7;
 }
 .footer .contact p a {
   color: #66fcf1;
   text-decoration: none;
-}
-.footer .contact .socials {
-  margin-top: 0.8rem;
-}
-.footer .contact .socials a {
-  color: #c5c6c7;
-  font-size: 1.2rem;
-  margin-right: 0.8rem;
-  transition: color 0.3s ease;
-}
-.footer .contact .socials a:hover {
-  color: #66fcf1;
 }
 .footer .divider {
   height: 1px;

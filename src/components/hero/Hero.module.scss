@@ -50,7 +50,8 @@
     @include Flex(row, flex-start, center);
     gap: 1.2rem;
 
-    button {
+    a {
+      @include Flex(row, center, center);
       border: none;
       cursor: pointer;
       border-radius: 8px;
@@ -58,6 +59,7 @@
       font-weight: 600;
       font-size: 1rem;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .exploreBtn {
