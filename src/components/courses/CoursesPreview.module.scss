@@ -68,11 +68,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
-  cursor: pointer;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 22px rgba(0, 123, 255, 0.15);
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:active {
+    outline: none;
   }
 
   .imageWrapper {
