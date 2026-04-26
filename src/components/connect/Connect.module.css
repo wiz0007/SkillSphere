@@ -88,7 +88,10 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
-.connectSection .cards .card .btnGroup button {
+.connectSection .cards .card .btnGroup a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   outline: none;
   cursor: pointer;
@@ -96,6 +99,7 @@
   padding: 0.8rem 1.5rem;
   font-weight: 600;
   font-family: "Roboto", sans-serif;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 .connectSection .cards .card .btnGroup .joinBtn {

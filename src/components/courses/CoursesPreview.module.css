@@ -87,6 +87,7 @@
   width: 100%;
   height: 180px;
   overflow: hidden;
+  position: relative;
 }
 @media (max-width: 600px) {
   .card .imageWrapper {
@@ -105,50 +106,74 @@
 .card .imageWrapper img:hover {
   transform: scale(1.05);
 }
+.card .imageWrapper .logoBadge {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.35rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 18px rgba(19, 44, 84, 0.18);
+  backdrop-filter: blur(6px);
+}
+.card .imageWrapper .logoBadge img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .card .info {
   padding: 1.4rem;
   text-align: left;
+}
+.card .info .label {
+  font-size: 0.82rem;
+  color: #007bff;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 .card .info h3 {
   font-size: 1.1rem;
   color: #222;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.6rem;
 }
 @media (max-width: 600px) {
   .card .info h3 {
     font-size: 1rem;
   }
 }
-.card .info .category {
-  font-size: 0.9rem;
-  color: #007bff;
+.card .info .description {
+  font-size: 0.95rem;
+  color: #555;
   font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  margin-bottom: 0.3rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
 }
-.card .info .instructor {
+.card .info .topics {
   font-size: 0.9rem;
   color: #666;
   font-family: "Roboto", sans-serif;
-  margin-bottom: 0.6rem;
-}
-.card .info .rating {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.3rem;
-  color: #f5b301;
-  font-weight: 600;
-  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .ctaWrapper {
   text-align: center;
 }
 .ctaWrapper .viewAllBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background: #007bff;
   color: #fff;
   border: none;
@@ -157,6 +182,7 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 .ctaWrapper .viewAllBtn:hover {

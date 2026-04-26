@@ -7,6 +7,7 @@ import Environment from '../../components/environment/Environment'
 import HelpCenter from '../../components/helpCenter/HelpCenter'
 import OurTeam from '../../components/ourTeam/OurTeam'
 import Connect from '../../components/connect/Connect'
+import FinalCta from '../../components/finalCta/FinalCta'
 import Footer from '../../components/footer/Footer'
 import Currency from '../../components/currency/Currency'
 
@@ -23,6 +24,7 @@ const HomePage = () => {
       <HelpCenter/>
       <OurTeam/>
       <Connect/>
+      <FinalCta/>
       <Footer/>
     </div>
   )

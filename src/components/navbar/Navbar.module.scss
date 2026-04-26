@@ -28,6 +28,7 @@
 .logo {
   @include Flex(row, center, center);
   gap: 0.6rem;
+  text-decoration: none;
 
   img {
     @include Image(40px, 40px);
@@ -105,12 +106,14 @@
 
   .loginBtn,
   .signupBtn {
+    @include Flex(row, center, center);
     border: none;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
     border-radius: 8px;
     padding: 0.6rem 1.4rem;
+    text-decoration: none;
   }
 
   .loginBtn {

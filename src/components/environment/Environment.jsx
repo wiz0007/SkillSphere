@@ -2,12 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Environment.module.scss";
 import { FaVideo, FaComments, FaUsers, FaHandsHelping } from "react-icons/fa";
-import environment from "../../assets/environment.png"
+import environment from "../../assets/environment.png";
 
 const Environment = () => {
   return (
     <section className={styles.environment} id="community">
-      {/* 🟦 Text Section */}
       <motion.div
         className={styles.textArea}
         initial={{ opacity: 0, x: -50 }}
@@ -19,11 +18,10 @@ const Environment = () => {
         <p>
           Our platform brings together a thriving community of mentors and students.
           Experience <strong>real-time learning</strong>, <strong>live discussions</strong>,
-          and <strong>collaborative growth</strong> — all in one space built for knowledge sharing.
+          and <strong>collaborative growth</strong> - all in one space built for knowledge sharing.
         </p>
       </motion.div>
 
-      {/* 🟩 Image Section */}
       <motion.div
         className={styles.imageArea}
         initial={{ opacity: 0, y: 30 }}
@@ -32,17 +30,13 @@ const Environment = () => {
         viewport={{ once: true }}
       >
         <div className={styles.imageWrapper}>
-          <img
-            src={environment}
-            alt="Interactive Learning Environment"
-          />
+          <img src={environment} alt="Interactive learning environment" />
           <div className={styles.overlay}>
             <p>Connect. Collaborate. Grow Together.</p>
           </div>
         </div>
       </motion.div>
 
-      {/* 🟨 Features Section */}
       <motion.div
         className={styles.features}
         initial={{ opacity: 0, y: 30 }}
@@ -87,4 +81,3 @@ const Environment = () => {
 };
 
 export default Environment;
-

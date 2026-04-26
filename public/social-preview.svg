@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="65" y1="32" x2="1128" y2="577" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF3FF"/>
+      <stop offset="1" stop-color="#D8FFF2"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B5FFF"/>
+      <stop offset="1" stop-color="#4CC9F0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <circle cx="1025" cy="124" r="116" fill="#BFE0FF" fill-opacity="0.48"/>
+  <circle cx="1138" cy="498" r="158" fill="#B6F2DB" fill-opacity="0.55"/>
+  <circle cx="148" cy="520" r="92" fill="#CFE2FF" fill-opacity="0.5"/>
+  <rect x="108" y="140" width="140" height="140" rx="38" fill="url(#mark)"/>
+  <path d="M205.416 181.57C201.258 176.545 194.149 172.188 183.821 172.188C170.392 172.188 161.543 179.195 161.543 189.965C161.543 200.564 170.111 205.062 180.875 207.155L188.281 208.655C194.54 209.891 197.96 212.172 197.96 216.332C197.96 221.356 192.804 224.759 184.487 224.759C176.405 224.759 170.146 221.945 165.209 216.128L153.883 226.317C160.252 234.148 170.486 239.921 184.128 239.921C200.061 239.921 213.422 232.208 213.422 215.441C213.422 203.209 204.902 197.09 192.991 194.684L185.597 193.184C179.221 191.895 176.932 189.919 176.932 186.152C176.932 182.062 180.758 178.952 187.577 178.952C193.777 178.952 198.363 181.289 201.82 185.391L205.416 181.57Z" fill="white"/>
+  <path d="M208.098 185.192L202.041 178.977C201.137 178.031 199.613 178.102 198.79 179.137L195.147 183.719C194.579 184.439 194.614 185.45 195.253 186.116L201.299 192.344C202.215 193.29 203.751 193.219 204.562 192.172L208.192 187.602C208.761 186.882 208.726 185.871 208.098 185.192Z" fill="#DFF6FF"/>
+  <text x="108" y="362" fill="#0D1B2A" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700">SkillSphere</text>
+  <text x="108" y="432" fill="#415A77" font-family="Segoe UI, Arial, sans-serif" font-size="30">Peer-to-peer learning for mentors and learners.</text>
+  <text x="108" y="478" fill="#415A77" font-family="Segoe UI, Arial, sans-serif" font-size="30">Discover skill categories, connect with experts, and join the main platform.</text>
+  <rect x="108" y="526" width="272" height="54" rx="27" fill="#0B5FFF"/>
+  <text x="156" y="561" fill="white" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">skillsphere.space</text>
+</svg>

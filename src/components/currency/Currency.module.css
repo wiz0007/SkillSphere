@@ -5,7 +5,6 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  /* Glowing floating background animation */
 }
 @media (max-width: 992px) {
   .currencySection {
@@ -112,6 +111,9 @@
   color: #555;
   font-family: "Roboto", sans-serif;
   line-height: 1.6;
+}
+.currencySection {
+  /* Glowing floating background animation */
 }
 .currencySection::before, .currencySection::after {
   content: "";

@@ -2,14 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Connect.module.scss";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { MAIN_SITE_URL } from "../../constants/site";
 
 const Connect = () => {
-  const navigate = useNavigate();
-
   return (
     <section className={styles.connectSection} id="connect">
-      {/* Header */}
       <motion.div
         className={styles.header}
         initial={{ opacity: 0, y: 30 }}
@@ -19,15 +16,13 @@ const Connect = () => {
       >
         <h2>Join Our Skill-Sharing Community</h2>
         <p>
-          Whether you’re a passionate <strong>mentor</strong> ready to teach or an eager{" "}
+          Whether you're a passionate <strong>mentor</strong> ready to teach or an eager{" "}
           <strong>student</strong> looking to learn, connect now and be part of our
           peer-to-peer learning revolution.
         </p>
       </motion.div>
 
-      {/* Cards */}
       <div className={styles.cards}>
-        {/* Mentor Card */}
         <motion.div
           className={styles.card}
           initial={{ opacity: 0, y: 40 }}
@@ -42,22 +37,15 @@ const Connect = () => {
             the world.
           </p>
           <div className={styles.btnGroup}>
-            <button
-              className={styles.joinBtn}
-              onClick={() => navigate("/mentor/signup")}
-            >
+            <a href={MAIN_SITE_URL} className={styles.joinBtn}>
               Join as Mentor
-            </button>
-            <button
-              className={styles.loginBtn}
-              onClick={() => navigate("/mentor/login")}
-            >
+            </a>
+            <a href={MAIN_SITE_URL} className={styles.loginBtn}>
               Login
-            </button>
+            </a>
           </div>
         </motion.div>
 
-        {/* Student Card */}
         <motion.div
           className={styles.card}
           initial={{ opacity: 0, y: 40 }}
@@ -72,18 +60,12 @@ const Connect = () => {
             your career and creativity.
           </p>
           <div className={styles.btnGroup}>
-            <button
-              className={styles.joinBtn}
-              onClick={() => navigate("/student/signup")}
-            >
+            <a href={MAIN_SITE_URL} className={styles.joinBtn}>
               Join as Student
-            </button>
-            <button
-              className={styles.loginBtn}
-              onClick={() => navigate("/student/login")}
-            >
+            </a>
+            <a href={MAIN_SITE_URL} className={styles.loginBtn}>
               Login
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
@@ -92,4 +74,3 @@ const Connect = () => {
 };
 
 export default Connect;
-
