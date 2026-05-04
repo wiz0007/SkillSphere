@@ -6,6 +6,7 @@ import ayush from "../../assets/team/ayushImg.jpg";
 import krishna from "../../assets/team/Krishna.png";
 import amandeep from "../../assets/team/amandeep.jpg";
 import vaibhav from "../../assets/team/vaibhav.jpg";
+import { fadeUp, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
 
 const teamMembers = [
   {
@@ -38,10 +39,10 @@ const OurTeam = () => {
     <section className={styles.teamSection}>
       <motion.div
         className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2>Meet Our Team</h2>
         <p>
@@ -50,15 +51,31 @@ const OurTeam = () => {
         </p>
       </motion.div>
 
-      <div className={styles.teamGrid}>
+      <motion.div
+        className={styles.teamRibbon}
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={viewportOnce}
+      >
+        <span>Creative Direction</span>
+        <span>Product Engineering</span>
+        <span>Community Strategy</span>
+        <span>Platform Vision</span>
+      </motion.div>
+
+      <motion.div
+        className={styles.teamGrid}
+        variants={staggerWrap}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         {teamMembers.map((member) => (
           <motion.div
             className={styles.card}
             key={member.name}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            variants={softPop}
           >
             <div className={styles.imageWrapper}>
               <img src={member.img} alt={member.name} />
@@ -84,7 +101,7 @@ const OurTeam = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

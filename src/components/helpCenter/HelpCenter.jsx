@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./HelpCenter.module.scss";
 import { FaHeadset, FaGavel, FaHandshake, FaShieldAlt } from "react-icons/fa";
+import { curtainReveal, fadeUp, slideLeft, slideRight, staggerWrap, viewportOnce } from "../../motion/presentation";
 
 const HelpCenter = () => {
   return (
@@ -9,10 +10,10 @@ const HelpCenter = () => {
       {/* Header Section */}
       <motion.div
         className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2>24/7 Help Center & Dispute Resolution</h2>
         <p>
@@ -21,14 +22,40 @@ const HelpCenter = () => {
         </p>
       </motion.div>
 
+      <motion.div
+        className={styles.signalStrip}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+        viewport={viewportOnce}
+      >
+        <motion.div
+          className={styles.signalTrack}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        >
+          {Array.from({ length: 2 }).map((_, trackIndex) => (
+            <div className={styles.signalSet} key={trackIndex}>
+              <span>24/7 Response</span>
+              <span>Transparent Mediation</span>
+              <span>Evidence-Based Review</span>
+              <span>Protected Transactions</span>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+
       {/* Feature Cards */}
-      <div className={styles.features}>
+      <motion.div
+        className={styles.features}
+        variants={staggerWrap}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={slideLeft}
         >
           <FaHeadset className={styles.icon} />
           <h4>24/7 Support Team</h4>
@@ -39,10 +66,7 @@ const HelpCenter = () => {
 
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={curtainReveal}
         >
           <FaGavel className={styles.icon} />
           <h4>Fair Dispute Resolution</h4>
@@ -53,10 +77,7 @@ const HelpCenter = () => {
 
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={curtainReveal}
         >
           <FaHandshake className={styles.icon} />
           <h4>Transparent Mediation</h4>
@@ -67,10 +88,7 @@ const HelpCenter = () => {
 
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={slideRight}
         >
           <FaShieldAlt className={styles.icon} />
           <h4>Secure Protection</h4>
@@ -78,7 +96,7 @@ const HelpCenter = () => {
             Our blockchain-backed transaction logs protect both users and maintain integrity in every financial and learning interaction.
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -10,11 +10,13 @@ import Connect from '../../components/connect/Connect'
 import FinalCta from '../../components/finalCta/FinalCta'
 import Footer from '../../components/footer/Footer'
 import Currency from '../../components/currency/Currency'
+import StoryRail from '../../components/storyRail/StoryRail'
 
 
 const HomePage = () => {
   return (
     <div>
+      <StoryRail/>
       <Navbar/>
       <Hero/>
       <Idea/>

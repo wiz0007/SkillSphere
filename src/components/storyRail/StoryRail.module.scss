@@ -1,0 +1,58 @@
+@use "../../styles/mixin" as *;
+
+.storyRail {
+  position: fixed;
+  right: 22px;
+  top: 118px;
+  bottom: 36px;
+  width: 94px;
+  z-index: 40;
+  pointer-events: none;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
+}
+
+.track,
+.fill {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 3px;
+  border-radius: 999px;
+}
+
+.track {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fill {
+  background: linear-gradient(180deg, #4cc9f0 0%, #0b5fff 100%);
+  box-shadow: 0 0 18px rgba(76, 201, 240, 0.4);
+}
+
+.pulse {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #7de1ff 45%, #0b5fff 100%);
+  box-shadow: 0 0 24px rgba(76, 201, 240, 0.45);
+}
+
+.labels {
+  position: absolute;
+  inset: 0 0 0 26px;
+  @include Flex(column, space-between, flex-start);
+
+  span {
+    @include Text(0.7rem, rgba(206, 225, 245, 0.76));
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}

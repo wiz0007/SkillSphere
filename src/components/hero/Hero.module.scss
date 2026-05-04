@@ -1,134 +1,389 @@
 @use "../../styles/mixin" as *;
 
 .hero {
-  @include Flex(row, space-between, center);
-  padding: 8rem 6rem 4rem;
-  min-height: 100%;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #f9fbff 0%, #eef3ff 100%);
+  padding: 8.5rem 4rem 5rem;
+  background:
+    radial-gradient(circle at top left, rgba(76, 201, 240, 0.18), transparent 26%),
+    radial-gradient(circle at 85% 10%, rgba(11, 95, 255, 0.16), transparent 28%),
+    linear-gradient(135deg, #061322 0%, #0b1e38 42%, #0f2747 100%);
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    padding: 6rem 2rem 3rem;
-    text-align: center;
+  @media (max-width: 992px) {
+    padding: 7rem 2rem 4rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 6rem 1.2rem 3rem;
+  }
+}
+
+.parallaxOrbOne,
+.parallaxOrbTwo {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(10px);
+  opacity: 0.65;
+}
+
+.parallaxOrbOne {
+  width: 280px;
+  height: 280px;
+  top: 90px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(76, 201, 240, 0.28) 0%, transparent 70%);
+}
+
+.parallaxOrbTwo {
+  width: 240px;
+  height: 240px;
+  bottom: 30px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(11, 95, 255, 0.24) 0%, transparent 72%);
+}
+
+.heroGlow,
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.heroGlow {
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.08), transparent 22%),
+    radial-gradient(circle at 80% 75%, rgba(76, 201, 240, 0.16), transparent 20%);
+  filter: blur(8px);
+}
+
+.heroGrid {
+  opacity: 0.24;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
+}
+
+.heroInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
   }
 }
 
 .heroContent {
-  max-width: 600px;
-  z-index: 2;
+  max-width: 640px;
 
   h1 {
-    @include Text(2.8rem, #1a1a1a);
-    font-weight: 700;
-    line-height: 1.3;
+    @include Text(4rem, #ffffff);
+    margin: 1rem 0 0;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.04em;
 
     span {
-      color: #007bff;
+      color: #75d7ff;
+      text-shadow: 0 0 24px rgba(117, 215, 255, 0.32);
     }
 
-    @media (max-width: 768px) {
-      font-size: 2rem;
+    @media (max-width: 992px) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2.25rem;
     }
   }
 
   p {
-    margin-top: 1.2rem;
-    @include Text(1.1rem, #555);
-    line-height: 1.6;
-    max-width: 500px;
-
-    @media (max-width: 768px) {
-      max-width: 100%;
-      font-size: 1rem;
-    }
-  }
-
-  .ctaButtons {
-    margin-top: 2rem;
-    @include Flex(row, flex-start, center);
-    gap: 1.2rem;
-
-    a {
-      @include Flex(row, center, center);
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-      padding: 0.9rem 1.8rem;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-
-    .exploreBtn {
-      background: #007bff;
-      color: #fff;
-
-      &:hover {
-        background: #005fd4;
-        transform: translateY(-3px);
-      }
-    }
-
-    .teachBtn {
-      background: transparent;
-      color: #007bff;
-      border: 2px solid #007bff;
-
-      &:hover {
-        background: #007bff;
-        color: #fff;
-        transform: translateY(-3px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      @include Flex(column, center, center);
-    }
+    @include Text(1.08rem, rgba(230, 238, 255, 0.78));
+    max-width: 560px;
+    line-height: 1.85;
+    margin-top: 1.35rem;
   }
 }
 
-.heroImage {
-  z-index: 2;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #9adfff;
+  font-size: 0.84rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 190px;
+    padding: 1rem 1.45rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+}
+
+.exploreBtn {
+  color: #081120;
+  background: linear-gradient(135deg, #ffffff 0%, #c8ebff 100%);
+  box-shadow: 0 20px 34px rgba(10, 34, 72, 0.25);
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+.teachBtn {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.signalRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+
+  span {
+    @include Text(0.9rem, #dfe8ff);
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.heroStage {
+  position: relative;
+  min-height: 640px;
+  perspective: 1200px;
+
+  @media (max-width: 1100px) {
+    min-height: 560px;
+  }
+
+  @media (max-width: 600px) {
+    min-height: 500px;
+  }
+}
+
+.stageOrbit {
+  position: absolute;
+  inset: 8% 10%;
+  border-radius: 50%;
+  border: 1px solid rgba(146, 225, 255, 0.18);
+  box-shadow:
+    0 0 0 26px rgba(255, 255, 255, 0.03),
+    0 0 0 58px rgba(255, 255, 255, 0.02);
+  animation: pulseOrbit 7s ease-in-out infinite;
+}
+
+.stageCore {
+  position: relative;
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.brandChip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 1rem 0.7rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 30px rgba(10, 20, 50, 0.24);
+  z-index: 4;
+
   img {
-    @include Image(480px, auto);
-    animation: float 4s ease-in-out infinite;
+    width: 30px;
+    height: 30px;
+  }
 
-    @media (max-width: 768px) {
-      @include Image(300px, auto);
-      margin-top: 2rem;
-    }
+  span {
+    font-weight: 700;
+    letter-spacing: 0.03em;
   }
 }
 
-@keyframes float {
+.previewFrame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 30px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 36px 70px rgba(5, 12, 30, 0.35);
+  backdrop-filter: blur(14px);
+  transform: rotate(-5deg);
+
+  @media (max-width: 600px) {
+    transform: none;
+  }
+}
+
+.previewHeader {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.2rem 0.2rem 0.8rem;
+
+  span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.42);
+  }
+}
+
+.previewOverlay {
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 1.8rem;
+  padding: 1.1rem 1.15rem;
+  border-radius: 22px;
+  background: rgba(6, 16, 29, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: #fff;
+
+  strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: rgba(235, 241, 255, 0.82);
+  }
+}
+
+.floatingPanel {
+  position: absolute;
+  width: 220px;
+  padding: 1rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 44px rgba(3, 10, 28, 0.22);
+  z-index: 3;
+  animation: floatPanel 6s ease-in-out infinite;
+
+  h3 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(233, 242, 255, 0.82);
+  }
+
+  @media (max-width: 1100px) {
+    width: 190px;
+  }
+
+  @media (max-width: 600px) {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+    animation: none;
+  }
+}
+
+.panelTop {
+  top: 3.5rem;
+  right: -1.5rem;
+}
+
+.panelLeft {
+  top: 15.5rem;
+  left: -3rem;
+  animation-delay: 1s;
+}
+
+.panelBottom {
+  bottom: -0.5rem;
+  right: 1.2rem;
+  animation-delay: 2s;
+}
+
+.panelTag {
+  display: inline-flex;
+  padding: 0.36rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #9ddcff;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+@keyframes pulseOrbit {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes floatPanel {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-15px);
-  }
-}
-
-.bgAnimation {
-  position: absolute;
-  top: -100px;
-  left: -100px;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.15), transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(0, 255, 200, 0.1), transparent 40%);
-  animation: moveBg 10s linear infinite alternate;
-  z-index: 1;
-}
-
-@keyframes moveBg {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(-50px, 50px);
+    transform: translateY(-10px);
   }
 }

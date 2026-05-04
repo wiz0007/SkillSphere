@@ -1,10 +1,10 @@
 @use "../../styles/mixin" as *;
 
 .finalCta {
-  padding: 2rem 4rem 5rem;
+  padding: 3rem 4rem 5rem;
   background:
-    radial-gradient(circle at top right, rgba(76, 201, 240, 0.18), transparent 28%),
-    linear-gradient(180deg, #f9fbff 0%, #eef5ff 100%);
+    radial-gradient(circle at top right, rgba(76, 201, 240, 0.14), transparent 28%),
+    linear-gradient(180deg, #0a1b31 0%, #102642 100%);
 
   @media (max-width: 992px) {
     padding: 1rem 2rem 4rem;
@@ -20,8 +20,15 @@
   margin: 0 auto;
   padding: 3rem 3.2rem;
   border-radius: 28px;
-  background: linear-gradient(135deg, #0b5fff 0%, #1f8fff 55%, #4cc9f0 100%);
-  box-shadow: 0 18px 40px rgba(11, 95, 255, 0.18);
+  background:
+    radial-gradient(circle at top right, rgba(76, 201, 240, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(11, 95, 255, 0.14), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%);
+  box-shadow:
+    0 30px 60px rgba(2, 10, 28, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -31,7 +38,7 @@
     content: "";
     position: absolute;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
   }
 
   &::before {
@@ -53,16 +60,32 @@
   }
 }
 
+.pulseRail {
+  display: flex;
+  gap: 0.45rem;
+  max-width: 340px;
+  margin: 0 auto 1.1rem;
+
+  span {
+    height: 4px;
+    flex: 1;
+    transform-origin: left;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0b5fff 0%, #4cc9f0 100%);
+  }
+}
+
 .kicker {
-  @include Text(0.9rem, rgba(255, 255, 255, 0.84));
+  @include Text(0.9rem, #0b5fff);
+  color: #8bddff;
   margin: 0 0 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .panel h2 {
-  @include Text(2.35rem, #fff);
+  @include Text(2.35rem, #ffffff);
   margin: 0 auto 1rem;
   max-width: 720px;
   line-height: 1.25;
@@ -74,7 +97,7 @@
 }
 
 .copy {
-  @include Text(1.03rem, rgba(255, 255, 255, 0.9));
+  @include Text(1.03rem, rgba(227, 236, 255, 0.78));
   max-width: 680px;
   margin: 0 auto;
   line-height: 1.8;
@@ -100,22 +123,23 @@
 }
 
 .primaryBtn {
-  background: #fff;
-  color: #0b5fff;
+  background: linear-gradient(135deg, #0b5fff 0%, #37a9ff 100%);
+  color: #fff;
+  box-shadow: 0 16px 28px rgba(11, 95, 255, 0.22);
 
   &:hover {
     transform: translateY(-2px);
-    background: #edf4ff;
+    filter: brightness(1.03);
   }
 }
 
 .secondaryBtn {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
   &:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
   }
 }

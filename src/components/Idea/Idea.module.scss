@@ -1,118 +1,206 @@
 @use "../../styles/mixin" as *;
 
 .mainIdea {
-  padding: 6rem 4rem;
-  text-align: center;
-  background: linear-gradient(135deg, #f4f8ff, #ffffff);
   position: relative;
   overflow: hidden;
+  padding: 5.5rem 4rem;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(76, 201, 240, 0.12), transparent 22%),
+    radial-gradient(circle at 86% 84%, rgba(11, 95, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #081727 0%, #0d2038 100%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: 0.16;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 94%);
+    pointer-events: none;
+  }
 
   @media (max-width: 992px) {
     padding: 4rem 2rem;
   }
 
   @media (max-width: 600px) {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.2rem;
   }
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(76, 201, 240, 0.14), transparent 18%),
+    radial-gradient(circle at 30% 80%, rgba(11, 95, 255, 0.1), transparent 20%);
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 2rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 1050px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.story {
+  padding-right: 1rem;
 
   h2 {
-    @include Text(2.2rem, #1a1a1a);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+    @include Text(3rem, #ffffff);
+    margin: 1rem 0;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
 
-    @media (max-width: 992px) {
+    @media (max-width: 700px) {
       font-size: 2rem;
-    }
-
-    @media (max-width: 600px) {
-      font-size: 1.6rem;
     }
   }
 
   p {
-    @include Text(1.05rem, #444);
-    max-width: 850px;
-    margin: 0 auto 3rem auto;
-    line-height: 1.8;
-
-    strong {
-      color: #007bff;
-    }
-
-    @media (max-width: 992px) {
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    @media (max-width: 600px) {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
+    @include Text(1.03rem, rgba(227, 236, 255, 0.8));
+    margin: 0;
+    line-height: 1.85;
+    max-width: 560px;
   }
 }
 
-.cards {
-  @include Flex(row, center, stretch);
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
+.kicker {
+  display: inline-flex;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8bddff;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
 
-  @media (max-width: 992px) {
-    gap: 1.5rem;
+.statementPanel {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 22px 40px rgba(3, 10, 28, 0.18);
+
+  span {
+    display: inline-block;
+    color: #8fdcff;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.76rem;
+    font-weight: 700;
   }
 
-  @media (max-width: 768px) {
-    @include Flex(column, center, center);
-    gap: 1.5rem;
+  strong {
+    display: block;
+    margin-top: 0.8rem;
+    color: #fff;
+    font-size: 1.15rem;
+    line-height: 1.55;
   }
 }
 
-.card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  max-width: 340px;
-  flex: 1 1 300px;
-  transition: all 0.3s ease;
-  text-align: left;
+.showcaseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showcaseCard {
+  min-height: 250px;
+  padding: 1.5rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 44px rgba(3, 10, 28, 0.18);
+  backdrop-filter: blur(14px);
   position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:nth-child(1) {
+    grid-row: span 2;
+    min-height: 100%;
+  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 123, 255, 0.15);
+    transform: translateY(-6px) rotate(-0.5deg);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 28px 48px rgba(3, 10, 28, 0.22);
   }
 
-  .icon {
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-
-    @media (max-width: 600px) {
-      font-size: 2rem;
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -25px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(76, 201, 240, 0.08);
   }
 
   h3 {
-    @include Text(1.3rem, #222);
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-
-    @media (max-width: 600px) {
-      font-size: 1.1rem;
-    }
+    @include Text(1.38rem, #ffffff);
+    margin: 1.2rem 0 0.8rem;
+    line-height: 1.3;
+    font-weight: 700;
   }
 
   p {
-    @include Text(0.95rem, #555);
-    line-height: 1.6;
-
-    @media (max-width: 600px) {
-      font-size: 0.9rem;
-    }
+    @include Text(0.96rem, rgba(227, 236, 255, 0.76));
+    margin: 0;
+    line-height: 1.75;
+    max-width: 92%;
   }
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.index {
+  color: rgba(139, 221, 255, 0.72);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.iconWrap {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b5fff 0%, #4cc9f0 100%);
+  color: #fff;
+  font-size: 1.35rem;
+  box-shadow: 0 14px 28px rgba(11, 95, 255, 0.22);
 }

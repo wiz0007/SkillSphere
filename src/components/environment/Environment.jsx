@@ -2,17 +2,22 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Environment.module.scss";
 import { FaVideo, FaComments, FaUsers, FaHandsHelping } from "react-icons/fa";
-import environment from "../../assets/environment.png";
+import environmentLoop from "../../assets/community-loop.gif";
+import { slideLeft, slideRight, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
+import ProductLoop from "../productLoop/ProductLoop";
+import ParallaxLayer from "../parallaxLayer/ParallaxLayer";
 
 const Environment = () => {
   return (
     <section className={styles.environment} id="community">
+      <ParallaxLayer className={styles.parallaxHaloOne} offset={90} />
+      <ParallaxLayer className={styles.parallaxHaloTwo} offset={70} reverse />
       <motion.div
         className={styles.textArea}
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
+        variants={slideLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2>Interactive Environment for Learners & Mentors</h2>
         <p>
@@ -24,13 +29,18 @@ const Environment = () => {
 
       <motion.div
         className={styles.imageArea}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
+        variants={slideRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <div className={styles.imageWrapper}>
-          <img src={environment} alt="Interactive learning environment" />
+          <ProductLoop
+            image={environmentLoop}
+            variant="community"
+            title="Community spaces in motion"
+            subtitle="Rooms, collaboration signals, and live discussion energy running like an ambient product demo."
+          />
           <div className={styles.overlay}>
             <p>Connect. Collaborate. Grow Together.</p>
           </div>
@@ -39,42 +49,42 @@ const Environment = () => {
 
       <motion.div
         className={styles.features}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        variants={staggerWrap}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
-        <div className={styles.feature}>
+        <motion.div className={styles.feature} variants={softPop}>
           <FaVideo className={styles.icon} />
           <div>
             <h4>Live Sessions</h4>
             <p>Engage directly with mentors through live interactive classes.</p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.feature}>
+        <motion.div className={styles.feature} variants={softPop}>
           <FaComments className={styles.icon} />
           <div>
             <h4>Community Chat</h4>
             <p>Join global discussions and share ideas instantly with peers.</p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.feature}>
+        <motion.div className={styles.feature} variants={softPop}>
           <FaUsers className={styles.icon} />
           <div>
             <h4>Collaborative Groups</h4>
             <p>Form or join study groups, projects, and shared learning spaces.</p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.feature}>
+        <motion.div className={styles.feature} variants={softPop}>
           <FaHandsHelping className={styles.icon} />
           <div>
             <h4>Mentorship Support</h4>
             <p>Get guided feedback and insights directly from your instructors.</p>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
