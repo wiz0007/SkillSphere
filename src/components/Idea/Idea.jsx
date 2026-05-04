@@ -1,78 +1,81 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Idea.module.scss";
-import { FaChalkboardTeacher, FaUsers, FaExchangeAlt } from "react-icons/fa";
+import { FaChalkboardTeacher, FaExchangeAlt, FaUsers } from "react-icons/fa";
 import { BRAND_NAME } from "../../constants/site";
+
+const showcases = [
+  {
+    id: "01",
+    icon: FaChalkboardTeacher,
+    title: "Mentors become the headline act",
+    copy: "Teach through sessions, guidance, and productized expertise instead of getting buried inside a generic catalogue.",
+  },
+  {
+    id: "02",
+    icon: FaUsers,
+    title: "Learners move through real momentum",
+    copy: "Every skill path is framed as progress, collaboration, and visible transformation, not just passive content consumption.",
+  },
+  {
+    id: "03",
+    icon: FaExchangeAlt,
+    title: "Community and value stay connected",
+    copy: "Discovery, interaction, and trusted exchange live in one flow so the platform feels like a system, not scattered tools.",
+  },
+];
 
 const Idea = () => {
   return (
     <section className={styles.mainIdea}>
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        Our Mission - Empower Through Peer-to-Peer Skill Sharing
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        {BRAND_NAME} is a <strong>peer-to-peer (P2P)</strong> learning ecosystem where{" "}
-        <strong>freelancer instructors</strong> can share their expertise and{" "}
-        <strong>students</strong> can directly enroll in real-world, skill-focused courses.
-        It's learning and teaching reimagined - by the people, for the people.
-      </motion.p>
-
-      <div className={styles.cards}>
+      <div className={styles.backdrop}></div>
+      <div className={styles.inner}>
         <motion.div
-          className={styles.card}
-          initial={{ opacity: 0, y: 20 }}
+          className={styles.story}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ duration: 0.65 }}
           viewport={{ once: true }}
         >
-          <FaChalkboardTeacher className={styles.icon} />
-          <h3>For Instructors</h3>
+          <span className={styles.kicker}>Why it feels different</span>
+          <h2>We are presenting {BRAND_NAME} like a product reveal, not a plain website.</h2>
           <p>
-            Share your skills, create courses, and grow your personal brand. Your knowledge
-            deserves an audience - monetize your expertise effortlessly.
+            The mission is bigger than listing features. {BRAND_NAME} should feel like
+            a stage where skill-sharing becomes cinematic, premium, and memorable from
+            the very first interaction.
           </p>
+
+          <div className={styles.statementPanel}>
+            <span>Presentation concept</span>
+            <strong>Learning should look as valuable as the transformation it promises.</strong>
+          </div>
         </motion.div>
 
-        <motion.div
-          className={styles.card}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <FaUsers className={styles.icon} />
-          <h3>For Learners</h3>
-          <p>
-            Discover unique courses taught by professionals from around the world.
-            Learn practical skills that truly matter for your career and creativity.
-          </p>
-        </motion.div>
+        <div className={styles.showcaseGrid}>
+          {showcases.map((item, index) => {
+            const Icon = item.icon;
 
-        <motion.div
-          className={styles.card}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <FaExchangeAlt className={styles.icon} />
-          <h3>For the Community</h3>
-          <p>
-            Connect, collaborate, and share. {BRAND_NAME} fosters a growing community where
-            everyone learns, teaches, and inspires one another.
-          </p>
-        </motion.div>
+            return (
+              <motion.article
+                key={item.id}
+                className={styles.showcaseCard}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 + index * 0.12, duration: 0.65 }}
+                viewport={{ once: true }}
+              >
+                <div className={styles.cardTop}>
+                  <span className={styles.index}>{item.id}</span>
+                  <div className={styles.iconWrap}>
+                    <Icon />
+                  </div>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

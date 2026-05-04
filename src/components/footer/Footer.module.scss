@@ -1,19 +1,21 @@
 @use "../../styles/mixin" as *;
 
 .footer {
-  background: linear-gradient(135deg, #0b0c10, #1f2833);
+  background:
+    radial-gradient(circle at top right, rgba(76, 201, 240, 0.12), transparent 20%),
+    linear-gradient(135deg, #071320, #10233e);
   color: #c5c6c7;
-  padding: 4rem 6rem 2rem;
+  padding: 4.5rem 6rem 2.2rem;
   font-family: 'Roboto', sans-serif;
   position: relative;
   z-index: 10;
 
   @media (max-width: 992px) {
-    padding: 3rem 2rem;
+    padding: 3.2rem 2rem 2rem;
   }
 
   @media (max-width: 600px) {
-    padding: 2rem 1.5rem;
+    padding: 2.4rem 1.2rem 1.8rem;
   }
 
   .top {
@@ -30,17 +32,17 @@
 
   .brand {
     flex: 1 1 300px;
-    max-width: 350px;
+    max-width: 380px;
 
     h2 {
-      @include Text(1.8rem, #66fcf1);
+      @include Text(1.95rem, #9be3ff);
       font-weight: 700;
       margin-bottom: 0.8rem;
     }
 
     p {
-      @include Text(0.95rem, #c5c6c7);
-      line-height: 1.6;
+      @include Text(0.95rem, #c5d3e2);
+      line-height: 1.75;
     }
   }
 
@@ -53,8 +55,10 @@
     }
 
     h4 {
-      @include Text(1.2rem, #45a29e);
+      @include Text(1.05rem, #86d9ff);
       margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
     ul {
@@ -62,15 +66,15 @@
       padding: 0;
 
       li {
-        margin: 0.4rem 0;
+        margin: 0.48rem 0;
 
         a {
-          color: #c5c6c7;
+          color: #d5deea;
           text-decoration: none;
           transition: color 0.3s ease;
 
           &:hover {
-            color: #66fcf1;
+            color: #9be3ff;
           }
         }
       }
@@ -86,17 +90,19 @@
     }
 
     h4 {
-      @include Text(1.2rem, #45a29e);
+      @include Text(1.05rem, #86d9ff);
       margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
     p {
-      @include Text(0.95rem, #c5c6c7);
-      margin: 0.3rem 0;
-      line-height: 1.7;
+      @include Text(0.95rem, #d1dceb);
+      margin: 0.38rem 0;
+      line-height: 1.75;
 
       a {
-        color: #66fcf1;
+        color: #9be3ff;
         text-decoration: none;
       }
     }
@@ -104,19 +110,19 @@
 
   .divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 1.8rem 0;
   }
 
   .bottom {
     text-align: center;
 
     p {
-      @include Text(0.9rem, #c5c6c7);
-      margin: 0.3rem 0;
+      @include Text(0.9rem, #cbd7e5);
+      margin: 0.35rem 0;
 
       &:last-child {
-        color: #66fcf1;
+        color: #9be3ff;
       }
     }
   }

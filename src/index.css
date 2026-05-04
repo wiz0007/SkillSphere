@@ -1,3 +1,30 @@
-body{
-    margin: 0;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #071320;
+  color: #ffffff;
+  font-family: "Segoe UI", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: rgba(76, 201, 240, 0.3);
+  color: #ffffff;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  isolation: isolate;
 }

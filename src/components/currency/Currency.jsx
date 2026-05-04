@@ -1,33 +1,59 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Currency.module.scss";
-import { FaLock, FaCoins, FaExchangeAlt, FaWallet } from "react-icons/fa";
+import { FaCoins, FaExchangeAlt, FaLock, FaWallet } from "react-icons/fa";
+import { curtainReveal, fadeUp, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
 
 const Currency = () => {
   return (
     <section className={styles.currencySection} id="currency">
       <motion.div
         className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
-        <h2>Blockchain-Protected In-App Currency — SkillCoin</h2>
+        <h2>Blockchain-Protected In-App Currency - SkillCoin</h2>
         <p>
-          Our platform introduces <strong>SkillCoin</strong> — a secure, blockchain-backed
+          Our platform introduces <strong>SkillCoin</strong> - a secure, blockchain-backed
           digital currency designed to enable seamless, transparent transactions between
           students and mentors.
         </p>
       </motion.div>
 
-      <div className={styles.flowContainer}>
+      <motion.div
+        className={styles.coinScene}
+        initial={{ opacity: 0, scale: 0.92 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={viewportOnce}
+      >
+        <div className={styles.sceneCore}>
+          <div className={styles.ringOne}></div>
+          <div className={styles.ringTwo}></div>
+          <div className={styles.coinCenter}>SC</div>
+          <motion.span className={styles.coinNode} animate={{ y: [0, -16, 0] }} transition={{ duration: 4, repeat: Infinity }}>$</motion.span>
+          <motion.span className={`${styles.coinNode} ${styles.nodeTwo}`} animate={{ y: [0, 14, 0] }} transition={{ duration: 4.6, repeat: Infinity }}></motion.span>
+          <motion.span className={`${styles.coinNode} ${styles.nodeThree}`} animate={{ y: [0, -12, 0] }} transition={{ duration: 5, repeat: Infinity }}></motion.span>
+        </div>
+        <div className={styles.sceneLegend}>
+          <span>Top-Up</span>
+          <span>Escrow</span>
+          <span>Withdrawal</span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className={styles.flowContainer}
+        variants={staggerWrap}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         <motion.div
           className={styles.step}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={curtainReveal}
         >
           <FaWallet className={styles.icon} />
           <h4>1. Student Top-Up</h4>
@@ -39,10 +65,7 @@ const Currency = () => {
 
         <motion.div
           className={styles.step}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={softPop}
         >
           <FaCoins className={styles.icon} />
           <h4>2. Course Enrollment</h4>
@@ -54,10 +77,7 @@ const Currency = () => {
 
         <motion.div
           className={styles.step}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={curtainReveal}
         >
           <FaExchangeAlt className={styles.icon} />
           <h4>3. Escrow Protection</h4>
@@ -69,10 +89,7 @@ const Currency = () => {
 
         <motion.div
           className={styles.step}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={softPop}
         >
           <FaLock className={styles.icon} />
           <h4>4. Mentor Withdrawal</h4>
@@ -81,7 +98,7 @@ const Currency = () => {
             which can be withdrawn or converted to real currency securely.
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

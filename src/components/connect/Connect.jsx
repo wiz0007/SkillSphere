@@ -3,16 +3,17 @@ import { motion } from "framer-motion";
 import styles from "./Connect.module.scss";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import { MAIN_SITE_URL } from "../../constants/site";
+import { fadeUp, slideLeft, slideRight, viewportOnce } from "../../motion/presentation";
 
 const Connect = () => {
   return (
     <section className={styles.connectSection} id="connect">
       <motion.div
         className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
         <h2>Join Our Skill-Sharing Community</h2>
         <p>
@@ -22,13 +23,17 @@ const Connect = () => {
         </p>
       </motion.div>
 
+      <div className={styles.connectorBeam}>
+        <motion.span animate={{ x: ["-10%", "110%"] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}></motion.span>
+      </div>
+
       <div className={styles.cards}>
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={slideLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <FaChalkboardTeacher className={styles.icon} />
           <h3>For Mentors</h3>
@@ -48,10 +53,10 @@ const Connect = () => {
 
         <motion.div
           className={styles.card}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={slideRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <FaUserGraduate className={styles.icon} />
           <h3>For Students</h3>
