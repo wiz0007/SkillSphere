@@ -11,7 +11,7 @@ import { fadeUp, softPop, staggerWrap, viewportOnce } from "../../motion/present
 const teamMembers = [
   {
     name: "Ayushmaan Mishra",
-    role: "Founder & CEO",
+    role: "Member",
     img: ayush,
     linkedin: "https://www.linkedin.com/in/ayushmaan-mishra-254020257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     twitter: "https://x.com/Ayushma44434272?t=diX25cD-oLYEhuE_-7aLQA&s=08",
@@ -19,17 +19,17 @@ const teamMembers = [
   },
   {
     name: "Krishna Kapil",
-    role: "Chief Design Officer",
+    role: "Member",
     img: krishna,
   },
   {
     name: "Vaibhav Chauhan",
-    role: "Lead Full Stack Developer",
+    role: "Member",
     img: vaibhav,
   },
   {
     name: "Amandeep Lohan",
-    role: "Marketing & Community Head",
+    role: "Member",
     img: amandeep,
   },
 ];
