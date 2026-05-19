@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.scss";
 import { BRAND_NAME, MAIN_SITE_URL, SUPPORT_EMAIL } from "../../constants/site";
+import collegeLogo from "../../assets/collegeLogo.png";
 
 const Footer = () => {
   return (
@@ -29,6 +30,14 @@ const Footer = () => {
           <p>Email: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
           <p>Website: <a href={MAIN_SITE_URL}>{MAIN_SITE_URL}</a></p>
           <p>Use the main platform for sign in, exploration, and community access.</p>
+        </div>
+
+        <div className={styles.academic}>
+          <img src={collegeLogo} alt="Govind Ballabh Pant University of Agriculture and Technology logo" />
+          <div>
+            <h4>Academic Project</h4>
+            <p>This website is presented as a final-year project under Govind Ballabh Pant University of Agriculture and Technology, Pantnagar.</p>
+          </div>
         </div>
       </div>
 
