@@ -1,14 +1,12 @@
 @use "../../styles/mixin" as *;
 
 .footer {
-  background:
-    radial-gradient(circle at top right, rgba(76, 201, 240, 0.12), transparent 20%),
-    linear-gradient(135deg, #071320, #10233e);
-  color: #c5c6c7;
+  background: #050505;
+  color: rgba(245, 245, 245, 0.66);
   padding: 4.5rem 6rem 2.2rem;
-  font-family: 'Roboto', sans-serif;
   position: relative;
   z-index: 10;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 
   @media (max-width: 992px) {
     padding: 3.2rem 2rem 2rem;
@@ -21,7 +19,7 @@
   .top {
     @include Flex(row, space-between, flex-start);
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.2rem;
     margin-bottom: 2.5rem;
 
     @media (max-width: 768px) {
@@ -30,18 +28,28 @@
     }
   }
 
+  .brand,
+  .links,
+  .contact,
+  .academic {
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
   .brand {
     flex: 1 1 300px;
     max-width: 380px;
 
     h2 {
-      @include Text(1.95rem, #9be3ff);
-      font-weight: 700;
+      @include Text(1.95rem, #f4f4f4);
+      font-weight: 900;
       margin-bottom: 0.8rem;
     }
 
     p {
-      @include Text(0.95rem, #c5d3e2);
+      @include Text(0.95rem, rgba(245, 245, 245, 0.62));
       line-height: 1.75;
     }
   }
@@ -55,10 +63,10 @@
     }
 
     h4 {
-      @include Text(1.05rem, #86d9ff);
+      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
       margin-bottom: 1rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      font-weight: 900;
     }
 
     ul {
@@ -69,12 +77,12 @@
         margin: 0.48rem 0;
 
         a {
-          color: #d5deea;
+          color: rgba(245, 245, 245, 0.72);
           text-decoration: none;
           transition: color 0.3s ease;
 
           &:hover {
-            color: #9be3ff;
+            color: #ffffff;
           }
         }
       }
@@ -90,19 +98,19 @@
     }
 
     h4 {
-      @include Text(1.05rem, #86d9ff);
+      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
       margin-bottom: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      font-weight: 900;
     }
 
     p {
-      @include Text(0.95rem, #d1dceb);
+      @include Text(0.95rem, rgba(245, 245, 245, 0.62));
       margin: 0.38rem 0;
       line-height: 1.75;
 
       a {
-        color: #9be3ff;
+        color: #ffffff;
         text-decoration: none;
       }
     }
@@ -113,11 +121,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 18px 34px rgba(3, 10, 28, 0.16);
 
     @media (max-width: 768px) {
       flex-direction: column;
@@ -125,24 +128,24 @@
     }
 
     img {
-      width: 92px;
-      height: 92px;
+      width: 86px;
+      height: 86px;
       object-fit: contain;
-      border-radius: 50%;
+      border-radius: 8px;
       background: rgba(255, 255, 255, 0.94);
       padding: 0.3rem;
       flex-shrink: 0;
     }
 
     h4 {
-      @include Text(1.05rem, #86d9ff);
+      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
       margin: 0 0 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      font-weight: 900;
     }
 
     p {
-      @include Text(0.93rem, #d1dceb);
+      @include Text(0.93rem, rgba(245, 245, 245, 0.62));
       margin: 0;
       line-height: 1.7;
     }
@@ -150,7 +153,7 @@
 
   .divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
     margin: 1.8rem 0;
   }
 
@@ -158,11 +161,11 @@
     text-align: center;
 
     p {
-      @include Text(0.9rem, #cbd7e5);
+      @include Text(0.9rem, rgba(245, 245, 245, 0.58));
       margin: 0.35rem 0;
 
       &:last-child {
-        color: #9be3ff;
+        color: rgba(245, 245, 245, 0.76);
       }
     }
   }

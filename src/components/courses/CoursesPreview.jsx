@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import styles from "./CoursesPreview.module.scss";
 import { MAIN_SITE_URL } from "../../constants/site";
 import skillSphereMark from "../../assets/skillSphere-mark.svg";
-import ParallaxLayer from "../parallaxLayer/ParallaxLayer";
 
 const categories = [
   {
@@ -50,8 +49,6 @@ const reelCards = [
 const CoursesPreview = () => {
   return (
     <section className={styles.coursesPreview} id="courses">
-      <ParallaxLayer className={styles.parallaxGlowOne} offset={70} />
-      <ParallaxLayer className={styles.parallaxGlowTwo} offset={55} reverse />
       <motion.div
         className={styles.heading}
         initial={{ opacity: 0, y: 30 }}
@@ -82,17 +79,10 @@ const CoursesPreview = () => {
           <p>Skill domains staged like destinations inside the SkillSphere story.</p>
         </div>
         <div className={styles.reelCards}>
-          {reelCards.map((card, index) => (
-            <motion.div
+          {reelCards.map((card) => (
+            <div
               key={card.title}
               className={styles.reelCard}
-              animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 5.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: index * 0.3,
-              }}
             >
               <div className={styles.reelDots}>
                 <span></span>
@@ -106,7 +96,7 @@ const CoursesPreview = () => {
                   <span key={line}>{line}</span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
         <div className={styles.reelOverlay}>
@@ -133,7 +123,6 @@ const CoursesPreview = () => {
                 <span></span>
                 <span></span>
               </div>
-              <div className={styles.scanSweep}></div>
               <div className={styles.logoBadge}>
                 <img src={skillSphereMark} alt="SkillSphere mark" />
               </div>

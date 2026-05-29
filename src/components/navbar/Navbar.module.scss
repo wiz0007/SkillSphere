@@ -4,12 +4,12 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: linear-gradient(180deg, rgba(6, 19, 34, 0.72), rgba(6, 19, 34, 0));
+  background: linear-gradient(180deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.24));
   transition: all 0.4s ease;
   z-index: 1000;
 
   &.scrolled {
-    background: rgba(6, 19, 34, 0.88);
+    background: rgba(7, 7, 7, 0.9);
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -38,7 +38,7 @@
   h1 {
     @include Text(1.5rem, #f4f8ff);
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0;
   }
 }
 
@@ -61,14 +61,14 @@
         position: absolute;
         width: 0%;
         height: 2px;
-        background-color: #4cc9f0;
+        background-color: #f5f5f5;
         left: 0;
         bottom: -4px;
         transition: width 0.3s ease;
       }
 
       &:hover {
-        color: #8bddff;
+        color: #ffffff;
         &::after {
           width: 100%;
         }
@@ -82,7 +82,7 @@
     left: 0;
     width: 100%;
     flex-direction: column;
-    background: rgba(7, 19, 32, 0.96);
+    background: rgba(7, 7, 7, 0.96);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(16px);
     padding: 2rem 0;
@@ -121,8 +121,8 @@
 
   .loginBtn {
     background: transparent;
-    color: #8bddff;
-    border: 1px solid rgba(139, 221, 255, 0.34);
+    color: #f4f4f4;
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     &:hover {
       background: rgba(255, 255, 255, 0.08);
@@ -131,12 +131,12 @@
   }
 
   .signupBtn {
-    background: linear-gradient(135deg, #0b5fff 0%, #4cc9f0 100%);
-    color: #fff;
-    box-shadow: 0 16px 28px rgba(11, 95, 255, 0.2);
+    background: #f4f4f4;
+    color: #080808;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
 
     &:hover {
-      filter: brightness(1.06);
+      background: #ffffff;
       transform: translateY(-2px);
     }
   }
@@ -151,8 +151,8 @@
   width: 50px;
   height: 50px;
   padding: 0;
-  border: 1px solid rgba(11, 95, 255, 0.14);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 30px rgba(3, 10, 28, 0.18);
   backdrop-filter: blur(16px);
@@ -168,7 +168,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #0b5fff;
+    outline: 2px solid rgba(245, 245, 245, 0.72);
     outline-offset: 3px;
   }
 

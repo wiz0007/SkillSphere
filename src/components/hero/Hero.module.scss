@@ -2,131 +2,126 @@
 
 .hero {
   position: relative;
+  min-height: 100vh;
   overflow: hidden;
-  padding: 8.5rem 4rem 5rem;
+  padding: 8.25rem 4rem 0;
   background:
-    radial-gradient(circle at top left, rgba(76, 201, 240, 0.18), transparent 26%),
-    radial-gradient(circle at 85% 10%, rgba(11, 95, 255, 0.16), transparent 28%),
-    linear-gradient(135deg, #061322 0%, #0b1e38 42%, #0f2747 100%);
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 34%),
+    linear-gradient(180deg, #080808 0%, #111111 52%, #050505 100%);
 
   @media (max-width: 992px) {
-    padding: 7rem 2rem 4rem;
+    padding: 7rem 2rem 0;
   }
 
   @media (max-width: 600px) {
-    padding: 6rem 1.2rem 3rem;
+    padding: 6rem 1.2rem 0;
   }
 }
 
-.parallaxOrbOne,
-.parallaxOrbTwo {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(10px);
-  opacity: 0.65;
-}
-
-.parallaxOrbOne {
-  width: 280px;
-  height: 280px;
-  top: 90px;
-  right: -60px;
-  background: radial-gradient(circle, rgba(76, 201, 240, 0.28) 0%, transparent 70%);
-}
-
-.parallaxOrbTwo {
-  width: 240px;
-  height: 240px;
-  bottom: 30px;
-  left: -50px;
-  background: radial-gradient(circle, rgba(11, 95, 255, 0.24) 0%, transparent 72%);
-}
-
-.heroGlow,
-.heroGrid {
+.noiseLayer,
+.foldedBackdrop {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.heroGlow {
-  background:
-    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.08), transparent 22%),
-    radial-gradient(circle at 80% 75%, rgba(76, 201, 240, 0.16), transparent 20%);
-  filter: blur(8px);
+.noiseLayer {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 86px 86px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 88%);
 }
 
-.heroGrid {
-  opacity: 0.24;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 70px 70px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
+.foldedBackdrop {
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    display: block;
+    width: 46vw;
+    min-width: 440px;
+    height: 76vh;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background:
+      linear-gradient(130deg, rgba(255, 255, 255, 0.14), transparent 42%),
+      linear-gradient(180deg, #242424, #090909);
+    filter: saturate(0.15);
+    opacity: 0.75;
+    animation: foldDrift 13s ease-in-out infinite;
+  }
+}
+
+.foldOne {
+  right: -8vw;
+  top: -18vh;
+  transform: rotate(18deg) skewX(-10deg);
+}
+
+.foldTwo {
+  right: 18vw;
+  top: 10vh;
+  transform: rotate(-16deg) skewX(12deg);
+  opacity: 0.42 !important;
+  animation-delay: 1.8s !important;
+}
+
+.foldThree {
+  left: -18vw;
+  bottom: -30vh;
+  transform: rotate(22deg) skewX(-16deg);
+  opacity: 0.28 !important;
+  animation-delay: 3.4s !important;
 }
 
 .heroInner {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
+  min-height: calc(100vh - 12rem);
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
-  gap: 3.5rem;
+  grid-template-columns: minmax(0, 0.98fr) minmax(420px, 0.82fr);
+  gap: 4rem;
   align-items: center;
   position: relative;
   z-index: 1;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1120px) {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 }
 
 .heroContent {
-  max-width: 640px;
+  max-width: 720px;
 
   h1 {
-    @include Text(4rem, #ffffff);
+    @include Text(clamp(4rem, 10vw, 8.5rem), #f5f5f5);
     margin: 1rem 0 0;
-    line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-
-    span {
-      color: #75d7ff;
-      text-shadow: 0 0 24px rgba(117, 215, 255, 0.32);
-    }
-
-    @media (max-width: 992px) {
-      font-size: 3rem;
-    }
-
-    @media (max-width: 600px) {
-      font-size: 2.25rem;
-    }
+    line-height: 0.88;
+    font-weight: 900;
+    letter-spacing: 0;
   }
 
   p {
-    @include Text(1.08rem, rgba(230, 238, 255, 0.78));
-    max-width: 560px;
-    line-height: 1.85;
-    margin-top: 1.35rem;
+    @include Text(1.15rem, rgba(244, 244, 244, 0.72));
+    max-width: 620px;
+    line-height: 1.8;
+    margin: 1.5rem 0 0;
   }
 }
 
 .eyebrow {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  padding: 0.56rem 0.85rem;
+  border-radius: 6px;
+  color: #d8d8d8;
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #9adfff;
-  font-size: 0.84rem;
-  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+  font-weight: 800;
   text-transform: uppercase;
-  font-weight: 700;
-  backdrop-filter: blur(10px);
+  letter-spacing: 0;
 }
 
 .ctaButtons {
@@ -139,109 +134,118 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-width: 190px;
+    min-width: 180px;
     padding: 1rem 1.45rem;
-    border-radius: 999px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800;
     transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
 }
 
 .exploreBtn {
-  color: #081120;
-  background: linear-gradient(135deg, #ffffff 0%, #c8ebff 100%);
-  box-shadow: 0 20px 34px rgba(10, 34, 72, 0.25);
+  color: #0b0b0b;
+  background: #f2f2f2;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
 
   &:hover {
-    transform: translateY(-2px) scale(1.01);
+    transform: translateY(-2px);
+    background: #ffffff;
   }
 }
 
 .teachBtn {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(10px);
+  color: #f4f4f4;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
   &:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.09);
   }
 }
 
-.signalRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 2rem;
+.proofStrip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 3.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(12px);
+
+  article {
+    min-height: 132px;
+    padding: 1.2rem;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
 
   span {
-    @include Text(0.9rem, #dfe8ff);
-    padding: 0.7rem 1rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
+    color: #a8a8a8;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0.75rem 0 0;
+    color: rgba(245, 245, 245, 0.78);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+
+    article:not(:last-child) {
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
   }
 }
 
 .heroStage {
   position: relative;
-  min-height: 640px;
   perspective: 1200px;
 
-  @media (max-width: 1100px) {
-    min-height: 560px;
+  @media (max-width: 1120px) {
+    max-width: 680px;
   }
-
-  @media (max-width: 600px) {
-    min-height: 500px;
-  }
-}
-
-.stageOrbit {
-  position: absolute;
-  inset: 8% 10%;
-  border-radius: 50%;
-  border: 1px solid rgba(146, 225, 255, 0.18);
-  box-shadow:
-    0 0 0 26px rgba(255, 255, 255, 0.03),
-    0 0 0 58px rgba(255, 255, 255, 0.02);
-  animation: pulseOrbit 7s ease-in-out infinite;
 }
 
 .stageCore {
   position: relative;
-  width: min(100%, 620px);
-  margin: 0 auto;
-  padding-top: 4rem;
+  width: 100%;
+  padding-top: 3.6rem;
 }
 
 .brandChip {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 12%;
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.7rem 1rem 0.7rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #fff;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f4f4f4;
   backdrop-filter: blur(14px);
-  box-shadow: 0 14px 30px rgba(10, 20, 50, 0.24);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.25);
   z-index: 4;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   span {
+    font-size: 0.88rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
   }
 }
 
@@ -249,14 +253,13 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 1rem;
-  border-radius: 30px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.075);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 36px 70px rgba(5, 12, 30, 0.35);
+  box-shadow: 0 38px 80px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(14px);
-  transform: rotate(-5deg);
+  transform: rotate(3deg);
 
   @media (max-width: 600px) {
     transform: none;
@@ -265,12 +268,12 @@
 
 .previewHeader {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.2rem 0.2rem 0.8rem;
+  gap: 0.45rem;
+  padding: 0.15rem 0.15rem 0.75rem;
 
   span {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.42);
   }
@@ -278,14 +281,14 @@
 
 .previewOverlay {
   position: absolute;
-  left: 1.6rem;
-  right: 1.6rem;
-  bottom: 1.8rem;
-  padding: 1.1rem 1.15rem;
-  border-radius: 22px;
-  background: rgba(6, 16, 29, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+  right: -2rem;
+  bottom: 4rem;
+  width: min(310px, 80%);
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  background: rgba(4, 4, 4, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
   color: #fff;
 
   strong {
@@ -296,94 +299,81 @@
 
   p {
     margin: 0;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.55;
-    color: rgba(235, 241, 255, 0.82);
-  }
-}
-
-.floatingPanel {
-  position: absolute;
-  width: 220px;
-  padding: 1rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 22px 44px rgba(3, 10, 28, 0.22);
-  z-index: 3;
-  animation: floatPanel 6s ease-in-out infinite;
-
-  h3 {
-    margin: 0.5rem 0;
-    font-size: 1rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: rgba(233, 242, 255, 0.82);
-  }
-
-  @media (max-width: 1100px) {
-    width: 190px;
+    color: rgba(235, 235, 235, 0.78);
   }
 
   @media (max-width: 600px) {
     position: static;
     width: 100%;
-    margin-top: 1rem;
-    animation: none;
+    margin-top: 0.85rem;
   }
 }
 
-.panelTop {
-  top: 3.5rem;
-  right: -1.5rem;
+.marqueeStack {
+  position: relative;
+  z-index: 2;
+  margin: 4rem -4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.38);
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+
+  @media (max-width: 600px) {
+    margin-left: -1.2rem;
+    margin-right: -1.2rem;
+  }
 }
 
-.panelLeft {
-  top: 15.5rem;
-  left: -3rem;
-  animation-delay: 1s;
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+
+  &:first-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.3rem;
+    padding: 0 1.5rem;
+    color: rgba(245, 245, 245, 0.72);
+    font-size: 0.9rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 }
 
-.panelBottom {
-  bottom: -0.5rem;
-  right: 1.2rem;
-  animation-delay: 2s;
+.marqueeReverse {
+  animation-direction: reverse;
+  opacity: 0.58;
 }
 
-.panelTag {
-  display: inline-flex;
-  padding: 0.36rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #9ddcff;
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 700;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-@keyframes pulseOrbit {
+@keyframes foldDrift {
   0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
+    translate: 0 0;
   }
-  50% {
-    transform: scale(1.04);
-    opacity: 1;
-  }
-}
 
-@keyframes floatPanel {
-  0%, 100% {
-    transform: translateY(0px);
-  }
   50% {
-    transform: translateY(-10px);
+    translate: 2rem -1rem;
   }
 }

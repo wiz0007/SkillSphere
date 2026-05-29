@@ -3,18 +3,15 @@ import { motion } from "framer-motion";
 import styles from "./Environment.module.scss";
 import { FaVideo, FaComments, FaUsers, FaHandsHelping } from "react-icons/fa";
 import environmentLoop from "../../assets/community-loop.gif";
-import { slideLeft, slideRight, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
+import { fadeUp, viewportOnce } from "../../motion/presentation";
 import ProductLoop from "../productLoop/ProductLoop";
-import ParallaxLayer from "../parallaxLayer/ParallaxLayer";
 
 const Environment = () => {
   return (
     <section className={styles.environment} id="community">
-      <ParallaxLayer className={styles.parallaxHaloOne} offset={90} />
-      <ParallaxLayer className={styles.parallaxHaloTwo} offset={70} reverse />
       <motion.div
         className={styles.textArea}
-        variants={slideLeft}
+        variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -29,7 +26,7 @@ const Environment = () => {
 
       <motion.div
         className={styles.imageArea}
-        variants={slideRight}
+        variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -47,45 +44,39 @@ const Environment = () => {
         </div>
       </motion.div>
 
-      <motion.div
-        className={styles.features}
-        variants={staggerWrap}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <motion.div className={styles.feature} variants={softPop}>
+      <div className={styles.features}>
+        <div className={styles.feature}>
           <FaVideo className={styles.icon} />
           <div>
             <h4>Live Sessions</h4>
             <p>Engage directly with mentors through live interactive classes.</p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className={styles.feature} variants={softPop}>
+        <div className={styles.feature}>
           <FaComments className={styles.icon} />
           <div>
             <h4>Community Chat</h4>
             <p>Join global discussions and share ideas instantly with peers.</p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className={styles.feature} variants={softPop}>
+        <div className={styles.feature}>
           <FaUsers className={styles.icon} />
           <div>
             <h4>Collaborative Groups</h4>
             <p>Form or join study groups, projects, and shared learning spaces.</p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className={styles.feature} variants={softPop}>
+        <div className={styles.feature}>
           <FaHandsHelping className={styles.icon} />
           <div>
             <h4>Mentorship Support</h4>
             <p>Get guided feedback and insights directly from your instructors.</p>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

@@ -6,7 +6,7 @@ import ayush from "../../assets/team/ayushImg.jpg";
 import krishna from "../../assets/team/Krishna.png";
 import amandeep from "../../assets/team/amandeep.jpg";
 import vaibhav from "../../assets/team/vaibhav.jpg";
-import { fadeUp, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
+import { fadeUp, viewportOnce } from "../../motion/presentation";
 
 const teamMembers = [
   {
@@ -64,18 +64,11 @@ const OurTeam = () => {
         <span>Platform Vision</span>
       </motion.div>
 
-      <motion.div
-        className={styles.teamGrid}
-        variants={staggerWrap}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
+      <div className={styles.teamGrid}>
         {teamMembers.map((member) => (
-          <motion.div
+          <div
             className={styles.card}
             key={member.name}
-            variants={softPop}
           >
             <div className={styles.imageWrapper}>
               <img src={member.img} alt={member.name} />
@@ -99,9 +92,9 @@ const OurTeam = () => {
                 </a>
               )}
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };

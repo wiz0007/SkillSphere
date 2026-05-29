@@ -3,31 +3,30 @@
 .mainIdea {
   position: relative;
   overflow: hidden;
-  padding: 5.5rem 4rem;
+  padding: 6rem 4rem;
   background:
-    radial-gradient(circle at 14% 18%, rgba(76, 201, 240, 0.12), transparent 22%),
-    radial-gradient(circle at 86% 84%, rgba(11, 95, 255, 0.12), transparent 24%),
-    linear-gradient(180deg, #081727 0%, #0d2038 100%);
+    linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 38%),
+    linear-gradient(180deg, #050505 0%, #101010 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 72px 72px;
-    opacity: 0.16;
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 94%);
+    opacity: 0.18;
     pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 92px 92px;
   }
 
   @media (max-width: 992px) {
-    padding: 4rem 2rem;
+    padding: 4.5rem 2rem;
   }
 
   @media (max-width: 600px) {
-    padding: 3rem 1.2rem;
+    padding: 3.5rem 1.2rem;
   }
 }
 
@@ -35,9 +34,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 85% 20%, rgba(76, 201, 240, 0.14), transparent 18%),
-    radial-gradient(circle at 30% 80%, rgba(11, 95, 255, 0.1), transparent 20%);
+  background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.04) 48%, transparent 49%);
 }
 
 .inner {
@@ -59,11 +56,11 @@
   padding-right: 1rem;
 
   h2 {
-    @include Text(3rem, #ffffff);
+    @include Text(3rem, #f4f4f4);
     margin: 1rem 0;
-    line-height: 1.1;
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: 0;
 
     @media (max-width: 700px) {
       font-size: 2rem;
@@ -71,49 +68,48 @@
   }
 
   p {
-    @include Text(1.03rem, rgba(227, 236, 255, 0.8));
+    @include Text(1.03rem, rgba(245, 245, 245, 0.68));
     margin: 0;
     line-height: 1.85;
     max-width: 560px;
   }
 }
 
+.kicker,
+.statementPanel span,
+.index {
+  color: rgba(245, 245, 245, 0.58);
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
 .kicker {
   display: inline-flex;
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #8bddff;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.8rem;
-  font-weight: 800;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.78rem;
+}
+
+.statementPanel,
+.showcaseCard {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
 }
 
 .statementPanel {
   margin-top: 2rem;
-  padding: 1.4rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 22px 40px rgba(3, 10, 28, 0.18);
-
-  span {
-    display: inline-block;
-    color: #8fdcff;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.76rem;
-    font-weight: 700;
-  }
+  padding: 1.35rem;
+  border-radius: 8px;
 
   strong {
     display: block;
-    margin-top: 0.8rem;
+    margin-top: 0.85rem;
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 1.55;
   }
 }
@@ -121,7 +117,7 @@
 .showcaseGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
 
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
@@ -130,15 +126,11 @@
 
 .showcaseCard {
   min-height: 250px;
-  padding: 1.5rem;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 24px 44px rgba(3, 10, 28, 0.18);
-  backdrop-filter: blur(14px);
+  padding: 1.35rem;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, background 0.25s ease;
 
   &:nth-child(1) {
     grid-row: span 2;
@@ -146,31 +138,19 @@
   }
 
   &:hover {
-    transform: translateY(-6px) rotate(-0.5deg);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 28px 48px rgba(3, 10, 28, 0.22);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -40px;
-    right: -25px;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: rgba(76, 201, 240, 0.08);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.07);
   }
 
   h3 {
-    @include Text(1.38rem, #ffffff);
+    @include Text(1.32rem, #f4f4f4);
     margin: 1.2rem 0 0.8rem;
     line-height: 1.3;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   p {
-    @include Text(0.96rem, rgba(227, 236, 255, 0.76));
+    @include Text(0.96rem, rgba(245, 245, 245, 0.64));
     margin: 0;
     line-height: 1.75;
     max-width: 92%;
@@ -181,26 +161,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-.index {
-  color: rgba(139, 221, 255, 0.72);
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
 }
 
 .iconWrap {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #0b5fff 0%, #4cc9f0 100%);
-  color: #fff;
-  font-size: 1.35rem;
-  box-shadow: 0 14px 28px rgba(11, 95, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f4f4f4;
+  font-size: 1.25rem;
 }

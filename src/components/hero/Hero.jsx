@@ -5,39 +5,39 @@ import heroLoop from "../../assets/hero-loop.gif";
 import skillSphereMark from "../../assets/skillSphere-mark.svg";
 import { BRAND_NAME, MAIN_SITE_URL } from "../../constants/site";
 import ProductLoop from "../productLoop/ProductLoop";
-import ParallaxLayer from "../parallaxLayer/ParallaxLayer";
 
 const heroSignals = [
-  "Mentor-led experiences",
-  "Presentation-grade onboarding",
-  "Community and skill economy",
+  "{ MENTOR ROOMS }",
+  "{ SKILL CATEGORIES }",
+  "{ LIVE COMMUNITY }",
+  "{ VALUE EXCHANGE }",
+  "{ FINAL YEAR PROJECT }",
 ];
 
-const floatingPanels = [
+const proofCards = [
   {
-    className: styles.panelTop,
-    title: "Live mentor rooms",
-    copy: "Learning sessions, guidance, and real collaboration in motion.",
+    title: "Rapid Learning",
+    copy: "Mentor-led paths, community support, and guided skill discovery.",
   },
   {
-    className: styles.panelLeft,
-    title: "Product-first learning",
-    copy: "A platform experience that feels designed, not assembled.",
+    title: "Product Feel",
+    copy: "The intro behaves like a reveal, not a static college project page.",
   },
   {
-    className: styles.panelBottom,
-    title: "Secure growth loop",
-    copy: "Courses, community, and value exchange woven into one journey.",
+    title: "Built To Scale",
+    copy: "A focused bridge into the main SkillSphere platform experience.",
   },
 ];
 
 const Hero = () => {
   return (
     <section className={styles.hero} id="home">
-      <ParallaxLayer className={styles.parallaxOrbOne} offset={120} />
-      <ParallaxLayer className={styles.parallaxOrbTwo} offset={85} reverse />
-      <div className={styles.heroGlow}></div>
-      <div className={styles.heroGrid}></div>
+      <div className={styles.noiseLayer}></div>
+      <div className={styles.foldedBackdrop}>
+        <span className={styles.foldOne}></span>
+        <span className={styles.foldTwo}></span>
+        <span className={styles.foldThree}></span>
+      </div>
 
       <div className={styles.heroInner}>
         <motion.div
@@ -46,27 +46,26 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className={styles.eyebrow}>The future of peer-to-peer learning</span>
+          <span className={styles.eyebrow}>Peer-to-peer learning platform</span>
 
-          <h1>
-            A product presentation for how <span>{BRAND_NAME}</span> transforms
-            mentorship into a cinematic experience.
-          </h1>
+          <h1>{BRAND_NAME}</h1>
 
           <p>
-            This is not just a course platform. It is a guided stage for learning,
-            teaching, collaboration, and trusted value exchange, designed to feel bold
-            from the first second.
+            A cinematic intro for a platform where learners discover skills,
+            connect with mentors, and move into the main product with confidence.
           </p>
 
           <div className={styles.ctaButtons}>
             <a href={MAIN_SITE_URL} className={styles.exploreBtn}>Enter SkillSphere</a>
-            <a href="#courses" className={styles.teachBtn}>See The Showcase</a>
+            <a href="#courses" className={styles.teachBtn}>View Showcase</a>
           </div>
 
-          <div className={styles.signalRow}>
-            {heroSignals.map((signal) => (
-              <span key={signal}>{signal}</span>
+          <div className={styles.proofStrip}>
+            {proofCards.map((card) => (
+              <article key={card.title}>
+                <span>{card.title}</span>
+                <p>{card.copy}</p>
+              </article>
             ))}
           </div>
         </motion.div>
@@ -77,11 +76,10 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1, rotateX: 0 }}
           transition={{ delay: 0.15, duration: 0.9 }}
         >
-          <div className={styles.stageOrbit}></div>
           <div className={styles.stageCore}>
             <div className={styles.brandChip}>
               <img src={skillSphereMark} alt={`${BRAND_NAME} mark`} />
-              <span>{BRAND_NAME}</span>
+              <span>skillsphere.space</span>
             </div>
 
             <div className={styles.previewFrame}>
@@ -93,30 +91,29 @@ const Hero = () => {
               <ProductLoop
                 image={heroLoop}
                 variant="hero"
-                title="A cinematic product layer"
-                subtitle="Autoplay-feeling showcase loops designed to make the platform feel alive."
+                title="Live product preview"
+                subtitle="Mentor rooms, category discovery, and platform entry in motion."
               />
               <div className={styles.previewOverlay}>
-                <strong>Experience Layered Learning</strong>
-                <p>Mentors, learners, community, and value exchange moving together.</p>
+                <strong>Open The Platform</strong>
+                <p>Move from the intro into the full SkillSphere experience.</p>
               </div>
             </div>
-
-            {floatingPanels.map((panel, index) => (
-              <motion.div
-                key={panel.title}
-                className={`${styles.floatingPanel} ${panel.className}`}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45 + index * 0.12, duration: 0.7 }}
-              >
-                <span className={styles.panelTag}>Presentation layer</span>
-                <h3>{panel.title}</h3>
-                <p>{panel.copy}</p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
+      </div>
+
+      <div className={styles.marqueeStack} aria-hidden="true">
+        <div className={styles.marqueeTrack}>
+          {[...heroSignals, ...heroSignals].map((signal, index) => (
+            <span key={`${signal}-${index}`}>{signal}</span>
+          ))}
+        </div>
+        <div className={`${styles.marqueeTrack} ${styles.marqueeReverse}`}>
+          {[...heroSignals].reverse().concat([...heroSignals].reverse()).map((signal, index) => (
+            <span key={`${signal}-reverse-${index}`}>{signal}</span>
+          ))}
+        </div>
       </div>
     </section>
   );

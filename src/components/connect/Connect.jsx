@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import styles from "./Connect.module.scss";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import { MAIN_SITE_URL } from "../../constants/site";
-import { fadeUp, slideLeft, slideRight, viewportOnce } from "../../motion/presentation";
+import { fadeUp, viewportOnce } from "../../motion/presentation";
 
 const Connect = () => {
   return (
@@ -24,17 +24,12 @@ const Connect = () => {
       </motion.div>
 
       <div className={styles.connectorBeam}>
-        <motion.span animate={{ x: ["-10%", "110%"] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}></motion.span>
+        <span>{`{ MENTOR PATH }`}</span>
+        <span>{`{ STUDENT PATH }`}</span>
       </div>
 
       <div className={styles.cards}>
-        <motion.div
-          className={styles.card}
-          variants={slideLeft}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
+        <div className={styles.card}>
           <FaChalkboardTeacher className={styles.icon} />
           <h3>For Mentors</h3>
           <p>
@@ -49,15 +44,9 @@ const Connect = () => {
               Login
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.card}
-          variants={slideRight}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
+        <div className={styles.card}>
           <FaUserGraduate className={styles.icon} />
           <h3>For Students</h3>
           <p>
@@ -72,7 +61,7 @@ const Connect = () => {
               Login
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

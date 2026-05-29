@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./Currency.module.scss";
 import { FaCoins, FaExchangeAlt, FaLock, FaWallet } from "react-icons/fa";
-import { curtainReveal, fadeUp, softPop, staggerWrap, viewportOnce } from "../../motion/presentation";
+import { fadeUp, viewportOnce } from "../../motion/presentation";
 
 const Currency = () => {
   return (
@@ -22,83 +22,50 @@ const Currency = () => {
         </p>
       </motion.div>
 
-      <motion.div
-        className={styles.coinScene}
-        initial={{ opacity: 0, scale: 0.92 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={viewportOnce}
-      >
-        <div className={styles.sceneCore}>
-          <div className={styles.ringOne}></div>
-          <div className={styles.ringTwo}></div>
-          <div className={styles.coinCenter}>SC</div>
-          <motion.span className={styles.coinNode} animate={{ y: [0, -16, 0] }} transition={{ duration: 4, repeat: Infinity }}>$</motion.span>
-          <motion.span className={`${styles.coinNode} ${styles.nodeTwo}`} animate={{ y: [0, 14, 0] }} transition={{ duration: 4.6, repeat: Infinity }}></motion.span>
-          <motion.span className={`${styles.coinNode} ${styles.nodeThree}`} animate={{ y: [0, -12, 0] }} transition={{ duration: 5, repeat: Infinity }}></motion.span>
-        </div>
-        <div className={styles.sceneLegend}>
-          <span>Top-Up</span>
-          <span>Escrow</span>
-          <span>Withdrawal</span>
-        </div>
-      </motion.div>
+      <div className={styles.ledgerStrip}>
+        <span>{`{ TOP-UP }`}</span>
+        <span>{`{ COURSE PAYMENT }`}</span>
+        <span>{`{ ESCROW }`}</span>
+        <span>{`{ MENTOR WITHDRAWAL }`}</span>
+      </div>
 
-      <motion.div
-        className={styles.flowContainer}
-        variants={staggerWrap}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <motion.div
-          className={styles.step}
-          variants={curtainReveal}
-        >
+      <div className={styles.flowContainer}>
+        <div className={styles.step}>
           <FaWallet className={styles.icon} />
           <h4>1. Student Top-Up</h4>
           <p>
             Students purchase SkillCoins using traditional payment methods.
             These coins are securely stored in their in-app wallet.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.step}
-          variants={softPop}
-        >
+        <div className={styles.step}>
           <FaCoins className={styles.icon} />
           <h4>2. Course Enrollment</h4>
           <p>
             Students use SkillCoins to pay for courses, ensuring quick and trustless
             transactions without third-party interference.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.step}
-          variants={curtainReveal}
-        >
+        <div className={styles.step}>
           <FaExchangeAlt className={styles.icon} />
           <h4>3. Escrow Protection</h4>
           <p>
             SkillCoins are securely held in blockchain escrow until the course
             is completed, ensuring fairness for both parties.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.step}
-          variants={softPop}
-        >
+        <div className={styles.step}>
           <FaLock className={styles.icon} />
           <h4>4. Mentor Withdrawal</h4>
           <p>
             After successful course completion, mentors receive SkillCoins,
             which can be withdrawn or converted to real currency securely.
           </p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

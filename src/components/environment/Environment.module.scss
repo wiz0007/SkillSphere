@@ -6,9 +6,8 @@
   gap: 2rem;
   align-items: center;
   padding: 6rem 4rem;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(11, 95, 255, 0.08), transparent 22%),
-    linear-gradient(180deg, #081727 0%, #0d2038 100%);
+  background: linear-gradient(180deg, #101010 0%, #050505 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 
@@ -16,47 +15,22 @@
     content: "";
     position: absolute;
     inset: 0;
+    opacity: 0.16;
+    pointer-events: none;
     background-image:
       linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 72px 72px;
-    opacity: 0.2;
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 95%);
-    pointer-events: none;
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 92px 92px;
   }
 
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
-    padding: 4rem 2rem;
+    padding: 4.5rem 2rem;
   }
 
   @media (max-width: 600px) {
-    padding: 3rem 1.2rem;
+    padding: 3.5rem 1.2rem;
   }
-}
-
-.parallaxHaloOne,
-.parallaxHaloTwo {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(8px);
-}
-
-.parallaxHaloOne {
-  width: 230px;
-  height: 230px;
-  top: 120px;
-  right: 60px;
-  background: radial-gradient(circle, rgba(76, 201, 240, 0.18) 0%, transparent 72%);
-}
-
-.parallaxHaloTwo {
-  width: 180px;
-  height: 180px;
-  bottom: 60px;
-  left: 50px;
-  background: radial-gradient(circle, rgba(11, 95, 255, 0.16) 0%, transparent 74%);
 }
 
 .textArea,
@@ -68,11 +42,11 @@
 
 .textArea {
   h2 {
-    @include Text(3rem, #ffffff);
+    @include Text(3rem, #f4f4f4);
     margin: 0 0 1rem;
     line-height: 1.08;
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-weight: 900;
+    letter-spacing: 0;
 
     @media (max-width: 700px) {
       font-size: 2rem;
@@ -80,51 +54,48 @@
   }
 
   p {
-    @include Text(1.03rem, rgba(227, 236, 255, 0.8));
+    @include Text(1.03rem, rgba(245, 245, 245, 0.66));
     line-height: 1.9;
     max-width: 560px;
 
     strong {
-      color: #82d8ff;
+      color: #f5f5f5;
     }
   }
 }
 
 .imageArea {
-    .imageWrapper {
+  .imageWrapper {
     position: relative;
     width: min(100%, 560px);
     margin-left: auto;
-    padding: 0.85rem;
-    border-radius: 30px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.055);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
-    box-shadow: 0 30px 60px rgba(2, 10, 28, 0.34);
-    transform: rotate(2deg);
 
-      .overlay {
-        position: absolute;
-        left: 1.5rem;
-      right: 1.5rem;
-      bottom: 1.4rem;
-      padding: 1rem 1.1rem;
-      border-radius: 18px;
-      background: rgba(8, 18, 32, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .overlay {
+      position: absolute;
+      left: 1.2rem;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      padding: 0.95rem 1rem;
+      border-radius: 8px;
+      background: rgba(4, 4, 4, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
       backdrop-filter: blur(10px);
 
       p {
         margin: 0;
-        font-weight: 700;
-        letter-spacing: 0.03em;
+        font-weight: 800;
+        letter-spacing: 0;
       }
     }
 
     @media (max-width: 992px) {
       margin: 0 auto;
-      transform: none;
     }
   }
 }
@@ -133,8 +104,9 @@
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.2rem;
+  gap: 1rem;
   margin-top: 1rem;
+  align-items: stretch;
 
   @media (max-width: 1100px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -148,33 +120,33 @@
 .feature {
   @include Flex(row, flex-start, flex-start);
   gap: 1rem;
-  padding: 1.2rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 36px rgba(3, 10, 28, 0.16);
+  padding: 1.15rem;
+  min-height: 148px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.25s ease, background 0.25s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.07);
   }
 
   .icon {
-    font-size: 1.8rem;
-    color: #8bddff;
+    font-size: 1.6rem;
+    color: #f4f4f4;
     margin-top: 0.2rem;
   }
 
   h4 {
-    @include Text(1.06rem, #ffffff);
-    margin: 0 0 0.3rem;
-    font-weight: 700;
+    @include Text(1.02rem, #f4f4f4);
+    margin: 0 0 0.35rem;
+    font-weight: 800;
   }
 
   p {
-    @include Text(0.9rem, rgba(227, 236, 255, 0.78));
+    @include Text(0.9rem, rgba(245, 245, 245, 0.62));
     margin: 0;
     line-height: 1.6;
   }
