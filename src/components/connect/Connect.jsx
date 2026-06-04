@@ -4,7 +4,7 @@ import styles from "./Connect.module.scss";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import { MAIN_SITE_URL } from "../../constants/site";
 import { fadeUp, viewportOnce } from "../../motion/presentation";
-
+// connecting
 const Connect = () => {
   return (
     <section className={styles.connectSection} id="connect">
