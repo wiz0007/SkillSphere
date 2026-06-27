@@ -11,23 +11,28 @@ import FinalCta from '../../components/finalCta/FinalCta'
 import Footer from '../../components/footer/Footer'
 import Currency from '../../components/currency/Currency'
 import StoryRail from '../../components/storyRail/StoryRail'
+import ImmersiveScene from '../../components/immersiveScene/ImmersiveScene'
+import styles from './HomePage.module.scss'
 
 
 const HomePage = () => {
   return (
-    <div>
+    <div className={styles.page}>
+      <ImmersiveScene/>
       <StoryRail/>
-      <Navbar/>
-      <Hero/>
-      <Idea/>
-      <CoursesPreview/>
-      <Environment/>
-      <Currency/>
-      <HelpCenter/>
-      <OurTeam/>
-      <Connect/>
-      <FinalCta/>
-      <Footer/>
+      <div className={styles.content}>
+        <Navbar/>
+        <Hero/>
+        <Idea/>
+        <CoursesPreview/>
+        <Environment/>
+        <Currency/>
+        <HelpCenter/>
+        <OurTeam/>
+        <Connect/>
+        <FinalCta/>
+        <Footer/>
+      </div>
     </div>
   )
 }
