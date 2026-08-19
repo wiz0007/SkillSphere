@@ -1,67 +1,94 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { FaChalkboardTeacher, FaGraduationCap } from "react-icons/fa";
 import styles from "./Connect.module.scss";
-import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import { MAIN_SITE_URL } from "../../constants/site";
-import { fadeUp, viewportOnce } from "../../motion/presentation";
-// connecting
+import { premiumEase, revealUp, stagger, viewportOnce } from "../../utilities/motion";
+
 const Connect = () => {
+  const reduceMotion = useReducedMotion();
+
+  const paths = [
+    {
+      index: "01",
+      label: "Learner",
+      title: "Find the next skill you want to build.",
+      icon: FaGraduationCap,
+    },
+    {
+      index: "02",
+      label: "Mentor",
+      title: "Turn what you know into useful guidance.",
+      icon: FaChalkboardTeacher,
+    },
+  ];
+
   return (
-    <section className={styles.connectSection} id="connect">
-      <motion.div
-        className={styles.header}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <h2>Join Our Skill-Sharing Community</h2>
-        <p>
-          Whether you're a passionate <strong>mentor</strong> ready to teach or an eager{" "}
-          <strong>student</strong> looking to learn, connect now and be part of our
-          peer-to-peer learning revolution.
-        </p>
-      </motion.div>
+    <section className={styles.connectSection} id="connect" aria-labelledby="connect-title">
+      <div className={styles.inner}>
+        <motion.header
+          className={styles.heading}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={revealUp}
+        >
+          <span className={styles.eyebrow}>Choose your side</span>
+          <h2 id="connect-title">Come to learn. Stay to share.</h2>
+        </motion.header>
 
-      <div className={styles.connectorBeam}>
-        <span>{`{ MENTOR PATH }`}</span>
-        <span>{`{ STUDENT PATH }`}</span>
-      </div>
-
-      <div className={styles.cards}>
-        <div className={styles.card}>
-          <FaChalkboardTeacher className={styles.icon} />
-          <h3>For Mentors</h3>
-          <p>
-            Create courses, share your expertise, and earn by teaching students from across
-            the world.
-          </p>
-          <div className={styles.btnGroup}>
-            <a href={MAIN_SITE_URL} className={styles.joinBtn}>
-              Join as Mentor
-            </a>
-            <a href={MAIN_SITE_URL} className={styles.loginBtn}>
-              Login
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.card}>
-          <FaUserGraduate className={styles.icon} />
-          <h3>For Students</h3>
-          <p>
-            Explore courses, interact with mentors, and learn practical skills that elevate
-            your career and creativity.
-          </p>
-          <div className={styles.btnGroup}>
-            <a href={MAIN_SITE_URL} className={styles.joinBtn}>
-              Join as Student
-            </a>
-            <a href={MAIN_SITE_URL} className={styles.loginBtn}>
-              Login
-            </a>
-          </div>
-        </div>
+        <motion.div
+          className={styles.paths}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.24 }}
+          variants={stagger}
+        >
+          {paths.map((path) => {
+            const Icon = path.icon;
+            return (
+              <motion.a
+                href={MAIN_SITE_URL}
+                className={styles.path}
+                key={path.label}
+                variants={{
+                  hidden: { opacity: 0, y: 28 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.66, ease: premiumEase } },
+                }}
+                whileHover={reduceMotion ? undefined : "hover"}
+              >
+                <motion.span
+                  className={styles.hoverWash}
+                  variants={{ hover: { scaleX: 1 } }}
+                  transition={{ duration: 0.45, ease: premiumEase }}
+                  aria-hidden="true"
+                />
+                <div className={styles.pathMeta}>
+                  <span>{path.index}</span>
+                  <motion.span
+                    className={styles.icon}
+                    variants={{ hover: { rotate: -5, y: -2 } }}
+                    transition={{ duration: 0.24, ease: premiumEase }}
+                  >
+                    <Icon />
+                  </motion.span>
+                </div>
+                <div className={styles.pathCopy}>
+                  <span>{path.label}</span>
+                  <h3>{path.title}</h3>
+                </div>
+                <motion.span
+                  className={styles.arrow}
+                  aria-hidden="true"
+                  variants={{ hover: { x: 5, y: -5 } }}
+                  transition={{ duration: 0.24, ease: premiumEase }}
+                >
+                  ↗
+                </motion.span>
+              </motion.a>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

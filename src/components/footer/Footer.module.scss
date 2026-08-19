@@ -1,172 +1,138 @@
-@use "../../styles/mixin" as *;
-
 .footer {
-  background: #050505;
-  color: rgba(245, 245, 245, 0.66);
-  padding: 4.5rem 6rem 2.2rem;
-  position: relative;
-  z-index: 10;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem var(--section-x) 2rem;
+  background: #05090d;
+  border-top: 1px solid var(--line);
+}
 
-  @media (max-width: 992px) {
-    padding: 3.2rem 2rem 2rem;
-  }
+.inner {
+  width: min(100%, var(--container));
+  margin: 0 auto;
+}
 
-  @media (max-width: 600px) {
-    padding: 2.4rem 1.2rem 1.8rem;
-  }
+.topRow,
+.linkRow,
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
 
-  .top {
-    @include Flex(row, space-between, flex-start);
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    margin-bottom: 2.5rem;
+.topRow {
+  padding-bottom: 1.7rem;
+}
 
-    @media (max-width: 768px) {
-      @include Flex(column, center, center);
-      text-align: center;
-    }
-  }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 720;
+  letter-spacing: -0.025em;
+}
 
-  .brand,
-  .links,
-  .contact,
-  .academic {
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+.brand img {
+  width: 34px;
+  height: 34px;
+}
 
-  .brand {
-    flex: 1 1 300px;
-    max-width: 380px;
+.topRow p {
+  margin: 0;
+  color: var(--muted-2);
+  font-size: 0.86rem;
+}
 
-    h2 {
-      @include Text(1.95rem, #f4f4f4);
-      font-weight: 900;
-      margin-bottom: 0.8rem;
-    }
+.linkRow {
+  min-height: 94px;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
 
-    p {
-      @include Text(0.95rem, rgba(245, 245, 245, 0.62));
-      line-height: 1.75;
-    }
-  }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.2rem;
+}
 
-  .links {
-    flex: 1 1 200px;
-    text-align: left;
+.links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 610;
+  transition: color 0.2s ease;
+}
 
-    @media (max-width: 768px) {
-      text-align: center;
-    }
+.links a:hover {
+  color: #fff;
+}
 
-    h4 {
-      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
+.academic {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: 310px;
+  color: var(--muted-2);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
 
-    ul {
-      list-style: none;
-      padding: 0;
+.academic img {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  object-fit: contain;
+  padding: 0.18rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+}
 
-      li {
-        margin: 0.48rem 0;
+.bottomRow {
+  padding-top: 1.45rem;
+  color: rgba(151, 170, 184, 0.58);
+  font-size: 0.74rem;
+}
 
-        a {
-          color: rgba(245, 245, 245, 0.72);
-          text-decoration: none;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: #ffffff;
-          }
-        }
-      }
-    }
-  }
-
-  .contact {
-    flex: 1 1 250px;
-    text-align: left;
-
-    @media (max-width: 768px) {
-      text-align: center;
-    }
-
-    h4 {
-      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    p {
-      @include Text(0.95rem, rgba(245, 245, 245, 0.62));
-      margin: 0.38rem 0;
-      line-height: 1.75;
-
-      a {
-        color: #ffffff;
-        text-decoration: none;
-      }
-    }
-  }
-
-  .academic {
-    flex: 1 1 320px;
-    display: flex;
-    align-items: center;
+@media (max-width: 760px) {
+  .topRow,
+  .linkRow,
+  .bottomRow {
+    align-items: flex-start;
+    flex-direction: column;
     gap: 1rem;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    img {
-      width: 86px;
-      height: 86px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.94);
-      padding: 0.3rem;
-      flex-shrink: 0;
-    }
-
-    h4 {
-      @include Text(0.88rem, rgba(245, 245, 245, 0.62));
-      margin: 0 0 0.6rem;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    p {
-      @include Text(0.93rem, rgba(245, 245, 245, 0.62));
-      margin: 0;
-      line-height: 1.7;
-    }
   }
 
-  .divider {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 1.8rem 0;
+  .linkRow {
+    padding: 1.5rem 0;
   }
 
-  .bottom {
-    text-align: center;
-
-    p {
-      @include Text(0.9rem, rgba(245, 245, 245, 0.58));
-      margin: 0.35rem 0;
-
-      &:last-child {
-        color: rgba(245, 245, 245, 0.76);
-      }
-    }
+  .academic {
+    max-width: 100%;
   }
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  letter-spacing: -0.035em;
+}
+
+.wordmark strong,
+.wordmark span {
+  font: inherit;
+}
+
+.wordmark strong {
+  font-weight: 790;
+}
+
+.wordmark span {
+  font-weight: 570;
+  color: rgba(239, 248, 251, 0.88);
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
 }

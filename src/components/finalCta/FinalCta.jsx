@@ -1,34 +1,41 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from "./FinalCta.module.scss";
 import { BRAND_NAME, MAIN_SITE_URL } from "../../constants/site";
-import { fadeUp, viewportOnce } from "../../motion/presentation";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
 const FinalCta = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className={styles.finalCta}>
+    <section className={styles.finalCta} aria-labelledby="final-cta-title">
       <motion.div
         className={styles.panel}
-        variants={fadeUp}
-        initial="hidden"
+        initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
         viewport={viewportOnce}
+        variants={revealUp}
       >
-        <div className={styles.pulseRail}>
-          <span>{`{ OPEN PLATFORM }`}</span>
-          <span>{`{ START LEARNING }`}</span>
-          <span>{`{ JOIN COMMUNITY }`}</span>
+        <span className={styles.eyebrow}>Ready when you are</span>
+        <div className={styles.contentRow}>
+          <h2 id="final-cta-title">Start with one skill. Build from there.</h2>
+          <motion.a
+            href={MAIN_SITE_URL}
+            whileHover={reduceMotion ? undefined : { x: 5 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            transition={{ duration: 0.24, ease: premiumEase }}
+          >
+            Enter {BRAND_NAME} <span aria-hidden="true">↗</span>
+          </motion.a>
         </div>
-        <p className={styles.kicker}>Ready To Continue?</p>
-        <h2>Enter {BRAND_NAME} and start learning with real mentors.</h2>
-        <p className={styles.copy}>
-          Explore the full platform to discover skill categories, join the community,
-          and connect with the right path for your growth.
-        </p>
-        <div className={styles.actions}>
-          <a href={MAIN_SITE_URL} className={styles.primaryBtn}>Open SkillSphere</a>
-          <a href={`${MAIN_SITE_URL}#courses`} className={styles.secondaryBtn}>Browse The Platform</a>
-        </div>
+        <motion.div
+          className={styles.accentLine}
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.9, delay: 0.18, ease: premiumEase }}
+          aria-hidden="true"
+        />
       </motion.div>
     </section>
   );

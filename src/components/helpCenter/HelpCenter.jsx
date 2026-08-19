@@ -1,66 +1,99 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import styles from "./HelpCenter.module.scss";
-import { FaHeadset, FaGavel, FaHandshake, FaShieldAlt } from "react-icons/fa";
-import { fadeUp, viewportOnce } from "../../motion/presentation";
+import { supportItems } from "../../content/homeContent";
+import { premiumEase, revealUp, stagger, viewportOnce } from "../../utilities/motion";
 
 const HelpCenter = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className={styles.helpCenter}>
-      {/* Header Section */}
-      <motion.div
-        className={styles.header}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <h2>24/7 Help Center & Dispute Resolution</h2>
-        <p>
-          We ensure a <strong>safe and fair environment</strong> for both students and mentors.
-          Our dedicated help center is always available to resolve <strong>payment, course, or communication</strong> disputes quickly and transparently.
-        </p>
-      </motion.div>
+    <section className={styles.helpCenter} id="support" aria-labelledby="support-title">
+      <div className={styles.inner}>
+        <motion.div
+          className={styles.intro}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={revealUp}
+        >
+          <span>Support</span>
+          <h2 id="support-title">Help that is easy to find.</h2>
+          <p>Clear support paths for platform, booking, payment, and record-related issues.</p>
+          <motion.div
+            className={styles.availability}
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.8 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: premiumEase }}
+          >
+            <strong>24/7</strong>
+            <span>Support access</span>
+          </motion.div>
+        </motion.div>
 
-      <div className={styles.signalStrip}>
-        <span>{`{ 24/7 RESPONSE }`}</span>
-        <span>{`{ TRANSPARENT MEDIATION }`}</span>
-        <span>{`{ PROTECTED TRANSACTIONS }`}</span>
-      </div>
+        <motion.div
+          className={styles.accordion}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          variants={stagger}
+        >
+          {supportItems.map((item, index) => {
+            const Icon = item.icon;
+            const isOpen = openIndex === index;
+            const panelId = `support-panel-${index}`;
+            const buttonId = `support-button-${index}`;
 
-      {/* Feature Cards */}
-      <div className={styles.features}>
-        <div className={styles.card}>
-          <FaHeadset className={styles.icon} />
-          <h4>24/7 Support Team</h4>
-          <p>
-            Our dedicated support team is available around the clock to help you with technical issues, payments, or account management.
-          </p>
-        </div>
+            return (
+              <motion.div className={styles.item} key={item.title} variants={revealUp}>
+                <button
+                  id={buttonId}
+                  type="button"
+                  className={styles.summary}
+                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                >
+                  <motion.span
+                    className={styles.icon}
+                    animate={isOpen && !reduceMotion ? { rotate: -4, scale: 1.04 } : { rotate: 0, scale: 1 }}
+                    transition={{ duration: 0.25, ease: premiumEase }}
+                  >
+                    <Icon />
+                  </motion.span>
+                  <span>{item.title}</span>
+                  <motion.span
+                    className={styles.symbol}
+                    aria-hidden="true"
+                    animate={isOpen && !reduceMotion ? { rotate: 45 } : { rotate: 0 }}
+                    transition={{ duration: 0.25, ease: premiumEase }}
+                  >
+                    +
+                  </motion.span>
+                </button>
 
-        <div className={styles.card}>
-          <FaGavel className={styles.icon} />
-          <h4>Fair Dispute Resolution</h4>
-          <p>
-            Any disagreements between mentors and learners are reviewed by our dispute panel to ensure fair and evidence-based outcomes.
-          </p>
-        </div>
-
-        <div className={styles.card}>
-          <FaHandshake className={styles.icon} />
-          <h4>Transparent Mediation</h4>
-          <p>
-            Both parties are involved in every step of the resolution process, ensuring transparency and mutual understanding.
-          </p>
-        </div>
-
-        <div className={styles.card}>
-          <FaShieldAlt className={styles.icon} />
-          <h4>Secure Protection</h4>
-          <p>
-            Our blockchain-backed transaction logs protect both users and maintain integrity in every financial and learning interaction.
-          </p>
-        </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className={styles.panel}
+                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.34, ease: premiumEase }}
+                    >
+                      <p>{item.copy}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
