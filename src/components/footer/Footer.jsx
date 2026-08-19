@@ -1,53 +1,53 @@
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from "./Footer.module.scss";
 import { BRAND_NAME, MAIN_SITE_URL, SUPPORT_EMAIL } from "../../constants/site";
+import logo from "../../assets/skillSphere-mark.svg";
 import collegeLogo from "../../assets/collegeLogo.png";
+import { premiumEase } from "../../utilities/motion";
 
 const Footer = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <footer className={styles.footer}>
-      <div className={styles.top}>
-        <div className={styles.brand}>
-          <h2>{BRAND_NAME}</h2>
-          <p>
-            A peer-to-peer platform empowering learners and mentors to share, grow,
-            and succeed - all within a trusted blockchain-protected ecosystem.
-          </p>
+    <motion.footer
+      className={styles.footer}
+      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: reduceMotion ? 0 : 0.68, ease: premiumEase }}
+    >
+      <div className={styles.inner}>
+        <div className={styles.topRow}>
+          <motion.a whileHover={reduceMotion ? undefined : { x: 3 }} className={styles.brand} href="#home">
+            <img src={logo} alt="" />
+            <span className={styles.wordmark}><strong>Skill</strong><span>Sphere</span></span>
+          </motion.a>
+          <p>Learn from people. Share what you know.</p>
         </div>
 
-        <div className={styles.links}>
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href={MAIN_SITE_URL}>Home</a></li>
-            <li><a href={MAIN_SITE_URL}>Courses</a></li>
-            <li><a href={MAIN_SITE_URL}>Help Center</a></li>
-            <li><a href={MAIN_SITE_URL}>About Us</a></li>
-          </ul>
-        </div>
+        <div className={styles.linkRow}>
+          <div className={styles.links}>
+            <a href="#courses">Courses</a>
+            <a href="#community">Community</a>
+            <a href="#currency">SkillCoin</a>
+            <a href="#team">Creator</a>
+            <a href={`mailto:${SUPPORT_EMAIL}`}>Support</a>
+            <a href={MAIN_SITE_URL}>Main platform</a>
+          </div>
 
-        <div className={styles.contact}>
-          <h4>Contact</h4>
-          <p>Email: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
-          <p>Website: <a href={MAIN_SITE_URL}>{MAIN_SITE_URL}</a></p>
-          <p>Use the main platform for sign in, exploration, and community access.</p>
-        </div>
-
-        <div className={styles.academic}>
-          <img src={collegeLogo} alt="Govind Ballabh Pant University of Agriculture and Technology logo" />
-          <div>
-            <h4>Academic Project</h4>
-            <p>This website is presented as a final-year project under Govind Ballabh Pant University of Agriculture and Technology, Pantnagar.</p>
+          <div className={styles.academic}>
+            <img src={collegeLogo} alt="Govind Ballabh Pant University of Agriculture and Technology logo" loading="lazy" />
+            <span>Academic project · GBPUAT, Pantnagar</span>
           </div>
         </div>
-      </div>
 
-      <div className={styles.divider}></div>
-
-      <div className={styles.bottom}>
-        <p>Copyright {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.</p>
-        <p>Crafted with care by the {BRAND_NAME} Team.</p>
+        <div className={styles.bottomRow}>
+          <span>© {new Date().getFullYear()} {BRAND_NAME}</span>
+          <span>Built for peer-to-peer learning.</span>
+        </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

@@ -1,30 +1,120 @@
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: #050505;
-  color: #ffffff;
-  font-family: "Segoe UI", "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bg: #06090d;
+  --surface: #0c1219;
+  --surface-2: #111a23;
+  --text: #f7fbff;
+  --muted: #9aa9b8;
+  --muted-2: #718191;
+  --line: rgba(186, 217, 234, 0.14);
+  --accent: #55d9f1;
+  --accent-soft: rgba(85, 217, 241, 0.14);
+  --accent-2: #80edc8;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
+  --section-x: clamp(1.15rem, 5vw, 5rem);
+  --section-y: clamp(4rem, 7vw, 6.5rem);
+  --container: 1240px;
+  --font-sans: "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-*::selection {
-  background: rgba(76, 201, 240, 0.3);
-  color: #ffffff;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+  background: var(--bg);
 }
 
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+button,
 a,
-button {
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
   -webkit-tap-highlight-color: transparent;
 }
 
+a {
+  color: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(85, 217, 241, 0.28);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 #root {
+  min-height: 100vh;
   isolation: isolate;
+}
+
+section[id] {
+  scroll-margin-top: 82px;
+}
+
+
+.skipLink {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  transform: translateY(-160%);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #071018;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -1,120 +1,126 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import styles from "./Hero.module.scss";
-import heroLoop from "../../assets/hero-loop.gif";
-import skillSphereMark from "../../assets/skillSphere-mark.svg";
+import heroPoster from "../../assets/hero-learning-poster.jpg";
 import { BRAND_NAME, MAIN_SITE_URL } from "../../constants/site";
-import ProductLoop from "../productLoop/ProductLoop";
+import useTypewriter from "../../hooks/useTypewriter";
+import { premiumEase, stagger } from "../../utilities/motion";
 
-const heroSignals = [
-  "{ MENTOR ROOMS }",
-  "{ SKILL CATEGORIES }",
-  "{ LIVE COMMUNITY }",
-  "{ VALUE EXCHANGE }",
-  "{ FINAL YEAR PROJECT }",
-];
-
-const proofCards = [
-  {
-    title: "Rapid Learning",
-    copy: "Mentor-led paths, community support, and guided skill discovery.",
-  },
-  {
-    title: "Product Feel",
-    copy: "The intro behaves like a reveal, not a static college project page.",
-  },
-  {
-    title: "Built To Scale",
-    copy: "A focused bridge into the main SkillSphere platform experience.",
-  },
-];
+// Free-to-use Pexels footage by cottonbro studio:
+// https://www.pexels.com/video/people-coding-on-computer-6804109/
+const HERO_VIDEO_URL = "https://www.pexels.com/download/video/6804109/";
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { value, reduceMotion } = useTypewriter("Learn from people who know.", 58);
+  const shouldReduceMotion = prefersReducedMotion || reduceMotion;
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const mediaY = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "9%"]), {
+    stiffness: 90,
+    damping: 24,
+  });
+  const mediaScale = useTransform(scrollYProgress, [0, 1], [1.015, 1.075]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0.5]);
+
   return (
-    <section className={styles.hero} id="home">
-      <div className={styles.noiseLayer}></div>
-      <div className={styles.foldedBackdrop}>
-        <span className={styles.foldOne}></span>
-        <span className={styles.foldTwo}></span>
-        <span className={styles.foldThree}></span>
-      </div>
+    <section ref={heroRef} className={styles.hero} id="home" aria-labelledby="hero-title">
+      <motion.div
+        className={styles.mediaLayer}
+        style={shouldReduceMotion ? undefined : { y: mediaY, scale: mediaScale }}
+        aria-hidden="true"
+      >
+        {!shouldReduceMotion && (
+          <video
+            className={styles.backgroundVideo}
+            src={HERO_VIDEO_URL}
+            poster={heroPoster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        )}
+        <div className={styles.posterFallback} style={{ backgroundImage: `url(${heroPoster})` }} />
+      </motion.div>
+      <div className={styles.overlay} aria-hidden="true" />
+      <div className={styles.grain} aria-hidden="true" />
 
-      <div className={styles.heroInner}>
+      <motion.div
+        className={styles.heroInner}
+        style={shouldReduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
+      >
         <motion.div
-          className={styles.heroContent}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className={styles.content}
+          variants={stagger}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
         >
-          <span className={styles.eyebrow}>Peer-to-peer learning platform</span>
+          <motion.div
+            className={styles.eyebrow}
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: premiumEase } },
+            }}
+          >
+            Peer-to-peer skill learning
+          </motion.div>
 
-          <h1>{BRAND_NAME}</h1>
+          <motion.h1
+            id="hero-title"
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.72, ease: premiumEase } },
+            }}
+          >
+            {value}
+            {!shouldReduceMotion && <span className={styles.cursor} aria-hidden="true" />}
+          </motion.h1>
 
-          <p>
-            A cinematic intro for a platform where learners discover skills,
-            connect with mentors, and move into the main product with confidence.
-          </p>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: premiumEase } },
+            }}
+          >
+            Find mentors, join live sessions, and build practical skills inside one connected learning community.
+          </motion.p>
 
-          <div className={styles.ctaButtons}>
-            <a href={MAIN_SITE_URL} className={styles.exploreBtn}>Enter SkillSphere</a>
-            <a href="#courses" className={styles.teachBtn}>View Showcase</a>
-          </div>
-
-          <div className={styles.proofStrip}>
-            {proofCards.map((card) => (
-              <article key={card.title}>
-                <span>{card.title}</span>
-                <p>{card.copy}</p>
-              </article>
-            ))}
-          </div>
+          <motion.div
+            className={styles.actions}
+            variants={{
+              hidden: { opacity: 0, y: 16 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.62, ease: premiumEase } },
+            }}
+          >
+            <motion.a whileHover={shouldReduceMotion ? undefined : { y: -2 }} href={MAIN_SITE_URL} className={styles.primaryAction}>
+              Enter {BRAND_NAME}
+            </motion.a>
+            <motion.a whileHover={shouldReduceMotion ? undefined : { x: 4 }} href="#courses" className={styles.textAction}>
+              Explore courses <span aria-hidden="true">→</span>
+            </motion.a>
+          </motion.div>
         </motion.div>
+      </motion.div>
 
-        <motion.div
-          className={styles.heroStage}
-          initial={{ opacity: 0, scale: 0.92, rotateX: 8 }}
-          animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-          transition={{ delay: 0.15, duration: 0.9 }}
-        >
-          <div className={styles.stageCore}>
-            <div className={styles.brandChip}>
-              <img src={skillSphereMark} alt={`${BRAND_NAME} mark`} />
-              <span>skillsphere.space</span>
-            </div>
-
-            <div className={styles.previewFrame}>
-              <div className={styles.previewHeader}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <ProductLoop
-                image={heroLoop}
-                variant="hero"
-                title="Live product preview"
-                subtitle="Mentor rooms, category discovery, and platform entry in motion."
-              />
-              <div className={styles.previewOverlay}>
-                <strong>Open The Platform</strong>
-                <p>Move from the intro into the full SkillSphere experience.</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      <div className={styles.marqueeStack} aria-hidden="true">
-        <div className={styles.marqueeTrack}>
-          {[...heroSignals, ...heroSignals].map((signal, index) => (
-            <span key={`${signal}-${index}`}>{signal}</span>
-          ))}
-        </div>
-        <div className={`${styles.marqueeTrack} ${styles.marqueeReverse}`}>
-          {[...heroSignals].reverse().concat([...heroSignals].reverse()).map((signal, index) => (
-            <span key={`${signal}-reverse-${index}`}>{signal}</span>
-          ))}
-        </div>
-      </div>
+      <motion.div
+        className={styles.heroFooter}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: shouldReduceMotion ? 0 : 1.15, duration: 0.55, ease: premiumEase }}
+        aria-hidden="true"
+      >
+        <span>Live guidance</span>
+        <span>Community learning</span>
+        <span>SkillCoin</span>
+      </motion.div>
     </section>
   );
 };

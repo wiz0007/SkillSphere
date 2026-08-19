@@ -1,99 +1,93 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from "./OurTeam.module.scss";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import ayush from "../../assets/team/ayushImg.jpg";
-import krishna from "../../assets/team/Krishna.png";
-import amandeep from "../../assets/team/amandeep.jpg";
-import vaibhav from "../../assets/team/vaibhav.jpg";
-import { fadeUp, viewportOnce } from "../../motion/presentation";
-
-const teamMembers = [
-  {
-    name: "Ayushmaan Mishra",
-    role: "Member",
-    img: ayush,
-    linkedin: "https://www.linkedin.com/in/ayushmaan-mishra-254020257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    twitter: "https://x.com/Ayushma44434272?t=diX25cD-oLYEhuE_-7aLQA&s=08",
-    github: "https://github.com/wiz0007",
-  },
-  {
-    name: "Krishna Kapil",
-    role: "Member",
-    img: krishna,
-  },
-  {
-    name: "Vaibhav Chauhan",
-    role: "Member",
-    img: vaibhav,
-  },
-  {
-    name: "Amandeep Lohan",
-    role: "Member",
-    img: amandeep,
-  },
-];
+import { developerProfile } from "../../content/homeContent";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
 const OurTeam = () => {
+  const developer = developerProfile;
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className={styles.teamSection}>
-      <motion.div
-        className={styles.header}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <h2>Meet Our Team</h2>
-        <p>
-          Behind every successful learning experience stands a team of dedicated innovators,
-          developers, and educators. Together, we're shaping the future of peer-to-peer learning.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className={styles.teamRibbon}
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={viewportOnce}
-      >
-        <span>Creative Direction</span>
-        <span>Product Engineering</span>
-        <span>Community Strategy</span>
-        <span>Platform Vision</span>
-      </motion.div>
-
-      <div className={styles.teamGrid}>
-        {teamMembers.map((member) => (
-          <div
-            className={styles.card}
-            key={member.name}
-          >
-            <div className={styles.imageWrapper}>
-              <img src={member.img} alt={member.name} />
-            </div>
-            <h3>{member.name}</h3>
-            <p>{member.role}</p>
-            <div className={styles.socials}>
-              {member.linkedin && (
-                <a href={member.linkedin} aria-label={`${member.name} on LinkedIn`} target="_blank" rel="noreferrer">
-                  <FaLinkedin />
-                </a>
-              )}
-              {member.twitter && (
-                <a href={member.twitter} aria-label={`${member.name} on X`} target="_blank" rel="noreferrer">
-                  <FaTwitter />
-                </a>
-              )}
-              {member.github && (
-                <a href={member.github} aria-label={`${member.name} on GitHub`} target="_blank" rel="noreferrer">
-                  <FaGithub />
-                </a>
-              )}
-            </div>
+    <section className={styles.teamSection} id="team" aria-labelledby="team-title">
+      <div className={styles.inner}>
+        <motion.header
+          className={styles.heading}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={revealUp}
+        >
+          <div>
+            <span className={styles.eyebrow}>Developer profile</span>
+            <h2 id="team-title">Building SkillSphere from interface to infrastructure.</h2>
           </div>
-        ))}
+          <p>A closer look at the product and engineering work shaping the SkillSphere experience.</p>
+        </motion.header>
+
+        <article className={styles.profile}>
+          <motion.div
+            className={styles.portraitWrap}
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: reduceMotion ? 0 : 0.72, ease: premiumEase }}
+          >
+            <motion.img
+              src={developer.image}
+              alt={developer.name}
+              className={styles.portrait}
+              whileHover={reduceMotion ? undefined : { scale: 1.025 }}
+              transition={{ duration: 0.55, ease: premiumEase }}
+            />
+            <span className={styles.count}>Product · Engineering</span>
+          </motion.div>
+
+          <motion.div
+            className={styles.profileBody}
+            initial={reduceMotion ? false : { opacity: 0, x: 42 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.28 }}
+            transition={{ duration: reduceMotion ? 0 : 0.78, delay: 0.08, ease: premiumEase }}
+          >
+            <div className={styles.roleLine}>
+              <span className={styles.liveDot} aria-hidden="true" />
+              {developer.role}
+            </div>
+
+            <div className={styles.identity}>
+              <h3>{developer.name}</h3>
+              <p>{developer.bio}</p>
+            </div>
+
+            <div className={styles.profileFooter}>
+              <div className={styles.scope} aria-label="Project responsibilities">
+                {developer.scope.map((item) => <span key={item}>{item}</span>)}
+              </div>
+
+              <div className={styles.socials} aria-label={`${developer.name} social links`}>
+                {developer.links.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <motion.a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`${developer.name} on ${link.label}`}
+                      title={link.label}
+                      whileHover={reduceMotion ? undefined : { y: -3, scale: 1.04 }}
+                      whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+                      transition={{ duration: 0.22, ease: premiumEase }}
+                    >
+                      <Icon />
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        </article>
       </div>
     </section>
   );

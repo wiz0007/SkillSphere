@@ -1,0 +1,17 @@
+{
+  "name": "SkillSphere",
+  "short_name": "SkillSphere",
+  "description": "Live mentor-led learning, courses, community support, and SkillCoin on SkillSphere.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05090d",
+  "theme_color": "#05090d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

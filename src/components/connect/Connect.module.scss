@@ -1,155 +1,124 @@
-@use "../../styles/mixin" as *;
-
 .connectSection {
-  padding: 6rem 4rem 3rem;
-  background:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.04), transparent 38%),
-    linear-gradient(180deg, #050505 0%, #101010 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-
-  @media (max-width: 992px) {
-    padding: 4.5rem 2rem 2rem;
-  }
-
-  @media (max-width: 600px) {
-    padding: 3.5rem 1.2rem 1.5rem;
-  }
+  padding: var(--section-y) var(--section-x);
+  background: #071019;
+  border-top: 1px solid var(--line);
 }
 
-.header {
-  max-width: 840px;
-  margin: 0 auto 2rem;
-
-  h2 {
-    @include Text(3rem, #f4f4f4);
-    margin: 0 0 1rem;
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: 0;
-
-    @media (max-width: 700px) {
-      font-size: 2rem;
-    }
-  }
-
-  p {
-    @include Text(1.03rem, rgba(245, 245, 245, 0.66));
-    line-height: 1.85;
-
-    strong {
-      color: #f5f5f5;
-    }
-  }
-}
-
-.connectorBeam {
-  max-width: 1180px;
-  margin: 0 auto 1.2rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-
-  span {
-    padding: 0.55rem 0.8rem;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.055);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(245, 245, 245, 0.64);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    font-weight: 900;
-  }
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  max-width: 1180px;
+.inner {
+  width: min(100%, var(--container));
   margin: 0 auto;
-  align-items: stretch;
-
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.045);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 1.5rem;
-  min-height: 300px;
-  transition: transform 0.25s ease, background 0.25s ease;
+.heading {
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  color: var(--accent-2);
+  font-size: 0.7rem;
+  font-weight: 760;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  line-height: 1.07;
+  letter-spacing: -0.045em;
+  font-weight: 710;
+}
+
+.paths {
+  border-top: 1px solid var(--line);
+}
+
+.path {
   position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 42px;
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 165px;
+  padding: 1.25rem 0;
   overflow: hidden;
-  text-align: left;
-  backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.07);
-  }
-
-  .icon {
-    font-size: 2.3rem;
-    color: #f4f4f4;
-    margin-bottom: 1rem;
-  }
-
-  h3 {
-    @include Text(1.35rem, #f4f4f4);
-    margin: 0 0 0.7rem;
-    font-weight: 800;
-  }
-
-  p {
-    @include Text(0.98rem, rgba(245, 245, 245, 0.62));
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
 }
 
-.btnGroup {
+.hoverWash {
+  position: absolute;
+  inset: 0 -1rem;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(85, 217, 241, 0.055), rgba(128, 237, 200, 0.025) 58%, transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.pathMeta {
   display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-top: auto;
+  align-items: center;
+  gap: 1rem;
+}
 
-  a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 148px;
-    border-radius: 8px;
-    padding: 0.9rem 1.25rem;
-    font-weight: 800;
-    text-decoration: none;
-    transition: transform 0.25s ease, background 0.25s ease;
+.pathMeta > span:first-child {
+  color: var(--muted-2);
+  font-size: 0.66rem;
+  font-weight: 750;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(210, 235, 245, 0.15);
+  color: var(--accent);
+}
+
+.pathCopy > span {
+  color: rgba(204, 224, 232, 0.55);
+  font-size: 0.68rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pathCopy h3 {
+  max-width: 720px;
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.45rem, 2.7vw, 2.35rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 680;
+}
+
+.arrow {
+  justify-self: end;
+  color: rgba(225, 242, 248, 0.58);
+  font-size: 1.35rem;
+}
+
+@media (max-width: 650px) {
+  .path {
+    grid-template-columns: 72px 1fr 28px;
+    gap: 0.8rem;
+    min-height: 140px;
   }
 
-  .joinBtn {
-    background: #f4f4f4;
-    color: #080808;
-
-    &:hover {
-      transform: translateY(-2px);
-      background: #ffffff;
-    }
+  .pathMeta {
+    gap: 0.55rem;
   }
 
-  .loginBtn {
-    background: rgba(255, 255, 255, 0.055);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+  .pathMeta > span:first-child {
+    display: none;
+  }
 
-    &:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.09);
-    }
+  .pathCopy h3 {
+    font-size: clamp(1.25rem, 6vw, 1.65rem);
   }
 }

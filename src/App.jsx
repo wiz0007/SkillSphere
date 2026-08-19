@@ -1,13 +1,13 @@
 import "./App.css";
 import Allroutes from "./routes/AllRoutes";
-import ScrollToTop from "./routes/ScrollToTop"
+import ScrollToTop from "./routes/ScrollToTop";
 
 function App() {
   return (
-    <div>
-      <ScrollToTop/>
+    <>
+      <ScrollToTop />
       <Allroutes />
-    </div>
+    </>
   );
 }
 

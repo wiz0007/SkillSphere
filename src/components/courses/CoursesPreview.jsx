@@ -1,152 +1,250 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useLayoutEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./CoursesPreview.module.scss";
 import { MAIN_SITE_URL } from "../../constants/site";
-import skillSphereMark from "../../assets/skillSphere-mark.svg";
+import { courseCategories } from "../../content/homeContent";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
-const categories = [
-  {
-    id: 1,
-    title: "Web Development",
-    description: "Build practical frontend, backend, and full-stack skills with mentor-led guidance.",
-    topics: "React, Node.js, APIs, Databases",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",
-    tone: "blue",
-  },
-  {
-    id: 2,
-    title: "UI/UX Design",
-    description: "Learn how to design digital products that feel intuitive, polished, and human-centered.",
-    topics: "Figma, Wireframes, Prototyping, Design Systems",
-    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=60",
-    tone: "gold",
-  },
-  {
-    id: 3,
-    title: "Photography & Media",
-    description: "Explore visual storytelling, camera basics, editing workflows, and creative media production.",
-    topics: "Photography, Editing, Storytelling, Content Creation",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=60",
-    tone: "coral",
-  },
-  {
-    id: 4,
-    title: "Business & Marketing",
-    description: "Grow strategic thinking across branding, promotion, audience building, and digital outreach.",
-    topics: "SEO, Branding, Campaigns, Social Media",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
-    tone: "green",
-  },
-];
-
-const reelCards = [
-  { title: "Web Systems", lines: ["Frontend flows", "Backend logic", "Deployment paths"] },
-  { title: "Design Lab", lines: ["Wireframes", "Interaction systems", "Visual polish"] },
-  { title: "Media Studio", lines: ["Camera craft", "Editing rhythm", "Content direction"] },
-  { title: "Growth Engine", lines: ["Brand strategy", "Audience reach", "Campaign thinking"] },
-];
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const CoursesPreview = () => {
+  const sectionRef = useRef(null);
+  const pinRef = useRef(null);
+  const viewportRef = useRef(null);
+  const trackRef = useRef(null);
+  const progressRef = useRef(null);
+  const counterRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+
+  useLayoutEffect(() => {
+    if (reduceMotion || !sectionRef.current || !pinRef.current || !viewportRef.current || !trackRef.current) {
+      return undefined;
+    }
+
+    const section = sectionRef.current;
+    const pin = pinRef.current;
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    const progress = progressRef.current;
+    const counter = counterRef.current;
+
+    const context = gsap.context(() => {
+      const media = gsap.matchMedia();
+
+      media.add(
+        {
+          desktop: "(min-width: 901px)",
+          mobile: "(max-width: 900px)",
+          motionOK: "(prefers-reduced-motion: no-preference)",
+        },
+        (matchContext) => {
+          const { desktop, mobile, motionOK } = matchContext.conditions;
+          if (!motionOK) return undefined;
+
+          const cards = gsap.utils.toArray("[data-course-card]", track);
+          const total = cards.length;
+          const getDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+          const getEndDistance = () => {
+            const distance = getDistance();
+            return Math.max(window.innerHeight * (mobile ? 1.45 : 1.25), distance * (mobile ? 1.35 : 1.12));
+          };
+
+          gsap.set(track, { x: 0 });
+          if (progress) gsap.set(progress, { scaleX: 0 });
+          if (counter) counter.textContent = `01 / ${String(total).padStart(2, "0")}`;
+
+          const horizontalTween = gsap.to(track, {
+            x: () => -getDistance(),
+            ease: "none",
+            scrollTrigger: {
+              id: "skillsphere-courses-horizontal",
+              trigger: pin,
+              start: mobile ? "top 68px" : "top top",
+              end: () => `+=${getEndDistance()}`,
+              pin,
+              pinSpacing: true,
+              scrub: mobile ? 0.42 : 0.7,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              fastScrollEnd: true,
+              snap: total > 1
+                ? {
+                    snapTo: 1 / (total - 1),
+                    duration: { min: 0.16, max: 0.38 },
+                    delay: mobile ? 0.05 : 0.08,
+                    ease: "power1.inOut",
+                  }
+                : false,
+              onUpdate: (self) => {
+                if (progress) gsap.set(progress, { scaleX: self.progress });
+                if (counter) {
+                  const current = Math.min(total, Math.round(self.progress * (total - 1)) + 1);
+                  counter.textContent = `${String(current).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+                }
+              },
+            },
+          });
+
+          cards.forEach((card, index) => {
+            const artwork = card.querySelector("[data-course-artwork]");
+            if (index > 0) {
+              gsap.fromTo(
+                card,
+                {
+                  rotateY: desktop ? 8 : 4,
+                  rotateZ: desktop ? 0.6 : 0.25,
+                  scale: desktop ? 0.955 : 0.975,
+                  opacity: 0.78,
+                  transformOrigin: "left center",
+                },
+                {
+                  rotateY: 0,
+                  rotateZ: 0,
+                  scale: 1,
+                  opacity: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: card,
+                    containerAnimation: horizontalTween,
+                    start: mobile ? "left 96%" : "left 92%",
+                    end: mobile ? "left 34%" : "left 58%",
+                    scrub: true,
+                  },
+                },
+              );
+            }
+
+            if (artwork) {
+              gsap.fromTo(
+                artwork,
+                { xPercent: desktop ? 5 : 3, scale: 1.035 },
+                {
+                  xPercent: desktop ? -4 : -2,
+                  scale: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: card,
+                    containerAnimation: horizontalTween,
+                    start: "left 100%",
+                    end: "right 0%",
+                    scrub: true,
+                  },
+                },
+              );
+            }
+          });
+
+          return () => {
+            horizontalTween.scrollTrigger?.kill();
+            horizontalTween.kill();
+          };
+        },
+      );
+
+      return () => media.revert();
+    }, section);
+
+    let resizeTimer;
+    const refresh = () => ScrollTrigger.refresh();
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(refresh, 120);
+    };
+
+    window.addEventListener("load", refresh, { once: true });
+    window.addEventListener("resize", onResize, { passive: true });
+    document.fonts?.ready?.then(refresh).catch(() => {});
+    const refreshTimer = window.setTimeout(refresh, 120);
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", onResize);
+      window.clearTimeout(resizeTimer);
+      window.clearTimeout(refreshTimer);
+      context.revert();
+    };
+  }, [reduceMotion]);
+
   return (
-    <section className={styles.coursesPreview} id="courses">
-      <motion.div
-        className={styles.heading}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <span className={styles.kicker}>Experience The Spectrum</span>
-        <h2>Skill categories staged like a premium product gallery.</h2>
-        <p>
-          Each category is presented as a destination inside the SkillSphere world,
-          giving the viewer a sense of motion, possibility, and ambition before they
-          even enter the main platform.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className={styles.showcaseReel}
-        initial={{ opacity: 0, y: 26 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-      >
-        <div className={styles.reelGrid}></div>
-        <div className={styles.reelSweep}></div>
-        <div className={styles.reelHeader}>
-          <span className={styles.reelTag}>Category Reel</span>
-          <p>Skill domains staged like destinations inside the SkillSphere story.</p>
-        </div>
-        <div className={styles.reelCards}>
-          {reelCards.map((card) => (
-            <div
-              key={card.title}
-              className={styles.reelCard}
-            >
-              <div className={styles.reelDots}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div className={styles.reelThumbnail}></div>
-              <strong>{card.title}</strong>
-              <div className={styles.reelLines}>
-                {card.lines.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className={styles.reelOverlay}>
-          <strong>Animated category reel</strong>
-          <p>Skill domains presented like destinations inside the product story.</p>
-        </div>
-      </motion.div>
-
-      <div className={styles.grid}>
-        {categories.map((category, index) => (
-          <motion.article
-            key={category.id}
-            className={`${styles.card} ${styles[category.tone]}`}
-            initial={{ opacity: 0, y: 30, rotate: index % 2 === 0 ? -1.5 : 1.5 }}
-            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-            transition={{ delay: 0.12 + index * 0.1, duration: 0.7 }}
-            viewport={{ once: true }}
+    <section
+      ref={sectionRef}
+      className={styles.coursesPreview}
+      id="courses"
+      aria-labelledby="courses-title"
+    >
+      <div ref={pinRef} className={styles.pinShell}>
+        <div className={styles.headingWrap}>
+          <motion.header
+            className={styles.heading}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={revealUp}
           >
-            <div className={styles.imageWrapper}>
-              <img src={category.image} alt={category.title} />
-              <div className={styles.imageOverlay}></div>
-              <div className={styles.videoHud}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div className={styles.logoBadge}>
-                <img src={skillSphereMark} alt="SkillSphere mark" />
-              </div>
-              <span className={styles.indexTag}>0{category.id}</span>
+            <div>
+              <span className={styles.eyebrow}>Explore skills</span>
+              <h2 id="courses-title">Find the direction you want to grow in.</h2>
             </div>
-            <div className={styles.info}>
-              <p className={styles.label}>Learning Category</p>
-              <h3>{category.title}</h3>
-              <p className={styles.description}>{category.description}</p>
-              <p className={styles.topics}>Popular topics: {category.topics}</p>
+            <div className={styles.headingSide}>
+              <p>Browse focused learning paths built around practical work and mentor guidance.</p>
+              <a href={MAIN_SITE_URL}>View all courses <span aria-hidden="true">↗</span></a>
             </div>
-          </motion.article>
-        ))}
-      </div>
+          </motion.header>
+        </div>
 
-      <motion.div
-        className={styles.ctaWrapper}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        viewport={{ once: true }}
-      >
-        <a href={MAIN_SITE_URL} className={styles.viewAllBtn}>Launch The Full Experience</a>
-      </motion.div>
+        <div className={styles.carouselFrame}>
+          <div ref={viewportRef} className={styles.viewport}>
+            <div ref={trackRef} className={styles.track} aria-label="Course categories">
+              {courseCategories.map((category, index) => {
+                const Icon = category.icon;
+                return (
+                  <article className={styles.courseCard} data-course-card key={category.id}>
+                    <div className={`${styles.visual} ${styles[category.visual]}`}>
+                      <div className={styles.visualTopline}>
+                        <span className={styles.visualIndex}>0{index + 1}</span>
+                        <span className={styles.visualIcon} aria-hidden="true"><Icon /></span>
+                      </div>
+                      <div className={styles.artwork} data-course-artwork>
+                        <img
+                          src={category.image}
+                          alt={category.imageAlt}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ objectPosition: category.imagePosition }}
+                        />
+                        <span className={styles.imageShade} aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <div className={styles.cardCopy}>
+                      <span>{category.kicker}</span>
+                      <h3>{category.title}</h3>
+                      <div className={styles.topics}>
+                        {category.topics.map((topic) => <span key={topic}>{topic}</span>)}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+
+              <a className={styles.endCard} data-course-card href={MAIN_SITE_URL}>
+                <span className={styles.endKicker}>Keep exploring</span>
+                <strong>Find more skills, mentors, and learning paths on SkillSphere.</strong>
+                <span className={styles.endArrow} aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div className={styles.progressRow} aria-hidden="true">
+            <span>Scroll to explore</span>
+            <div className={styles.progressTrack}><i ref={progressRef} /></div>
+            <span ref={counterRef}>01 / 05</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
