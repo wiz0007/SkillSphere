@@ -1,11 +1,16 @@
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import styles from "./Currency.module.scss";
 import { currencySteps } from "../../content/homeContent";
-import { premiumEase, revealSoft, revealUp, stagger, viewportOnce } from "../../utilities/motion";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
 const Currency = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const walletRef = useRef(null);
   const reduceMotion = useReducedMotion();
+  const walletInView = useInView(walletRef, { amount: 0.12, margin: "120px 0px" });
+  const active = currencySteps[activeIndex];
+  const ActiveIcon = active.icon;
 
   return (
     <section className={styles.currencySection} id="currency" aria-labelledby="currency-title">
@@ -19,89 +24,89 @@ const Currency = () => {
         >
           <div>
             <span className={styles.eyebrow}>SkillCoin</span>
-            <h2 id="currency-title">A clear exchange from booking to payout.</h2>
+            <h2 id="currency-title">SkillCoin, without the friction.</h2>
           </div>
-          <p>One wallet keeps the learner and mentor side of a session easy to understand.</p>
         </motion.header>
 
-        <div className={styles.ledger}>
+        <div className={styles.walletExperience}>
           <motion.div
-            className={styles.coinPanel}
-            aria-hidden="true"
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            variants={revealSoft}
+            ref={walletRef}
+            className={styles.walletStage}
+            initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.28 }}
+            transition={{ duration: reduceMotion ? 0 : 0.72, ease: premiumEase }}
           >
-            <span>SkillCoin</span>
-            <motion.strong
-              initial={reduceMotion ? false : { opacity: 0, y: 24, rotate: -3 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-              viewport={{ once: true, amount: 0.8 }}
-              transition={{ duration: 0.78, ease: premiumEase }}
-            >
-              SC
-            </motion.strong>
-            <small>Learning value, kept in one flow.</small>
+            <div className={styles.walletGlow} aria-hidden="true" />
+            <div className={styles.walletTop}>
+              <div>
+                <span>SkillCoin wallet</span>
+                <strong>{active.balance}</strong>
+              </div>
+              <div className={styles.coinMark} aria-hidden="true">SC</div>
+            </div>
+
+            <div className={styles.walletOrbit} aria-hidden="true">
+              <span /><span /><span />
+              <i className={!reduceMotion && walletInView ? styles.orbitSpin : ""} />
+              <div className={styles.orbitCore}><ActiveIcon /></div>
+            </div>
+
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active.title}
+                className={styles.receipt}
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: premiumEase }}
+              >
+                <span>{active.status}</span>
+                <strong>{active.amount}</strong>
+                <small>{active.copy}</small>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className={styles.walletFooter}>
+              <span>Protected session flow</span>
+              <span>Audit-aware</span>
+            </div>
           </motion.div>
 
-          <motion.div
-            className={styles.flowWrap}
-            initial={reduceMotion ? false : "hidden"}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={stagger}
-          >
-            <motion.span
-              className={styles.flowProgressDesktop}
-              initial={reduceMotion ? false : { scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 1.15, delay: 0.12, ease: premiumEase }}
-              aria-hidden="true"
-            />
-            <motion.span
-              className={styles.flowProgressMobile}
-              initial={reduceMotion ? false : { scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.05, delay: 0.12, ease: premiumEase }}
-              aria-hidden="true"
-            />
-
-            <ol className={styles.flow}>
-              {currencySteps.map((step, index) => {
-                const Icon = step.icon;
-                return (
-                  <motion.li className={styles.step} key={step.title} variants={revealUp}>
-                    <motion.span
-                      className={styles.node}
-                      whileHover={reduceMotion ? undefined : { scale: 1.06, y: -3 }}
-                      transition={{ duration: 0.24, ease: premiumEase }}
-                    >
-                      <Icon />
-                    </motion.span>
-                    <div className={styles.stepCopy}>
-                      <span>0{index + 1}</span>
-                      <h3>{step.title}</h3>
-                      <p>{step.copy}</p>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ol>
-          </motion.div>
+          <div className={styles.stepRail} aria-label="SkillCoin flow">
+            {currencySteps.map((step, index) => {
+              const Icon = step.icon;
+              const isActive = index === activeIndex;
+              return (
+                <motion.button
+                  key={step.title}
+                  type="button"
+                  aria-pressed={isActive}
+                  className={`${styles.stepButton} ${isActive ? styles.activeStep : ""}`}
+                  onClick={() => setActiveIndex(index)}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  whileHover={reduceMotion ? undefined : { x: 6 }}
+                  transition={{ duration: 0.22, ease: premiumEase }}
+                >
+                  <span className={styles.stepIndex}>0{index + 1}</span>
+                  <span className={styles.stepIcon}><Icon /></span>
+                  <span className={styles.stepCopy}>
+                    <small>{step.kicker}</small>
+                    <strong>{step.title}</strong>
+                    <span>{step.copy}</span>
+                  </span>
+                  <span className={styles.stepArrow} aria-hidden="true">→</span>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
 
-        <motion.p
-          className={styles.auditNote}
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.55, ease: premiumEase }}
-        >
-          <span aria-hidden="true" /> Transaction audit records support accountability across the flow.
-        </motion.p>
+        <div className={styles.trustStrip}>
+          <span><i /> Booking value stays visible</span>
+          <span><i /> Payout follows completion</span>
+          <span><i /> Transaction records support accountability</span>
+        </div>
       </div>
     </section>
   );

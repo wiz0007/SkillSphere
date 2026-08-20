@@ -1,6 +1,8 @@
 .currencySection {
-  padding: var(--section-y) var(--section-x);
-  background: #05090d;
+  padding: clamp(4.5rem, 8vw, 7rem) var(--section-x);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(85, 217, 241, 0.05), transparent 27%),
+    #05090d;
   border-top: 1px solid var(--line);
 }
 
@@ -10,183 +12,249 @@
 }
 
 .heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.45fr);
-  gap: clamp(2rem, 7vw, 6rem);
-  align-items: end;
-  margin-bottom: 2.4rem;
+  display: block;
+  margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
 }
 
 .eyebrow {
   color: var(--accent);
   font-size: 0.7rem;
-  font-weight: 760;
-  letter-spacing: 0.13em;
+  font-weight: 780;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .heading h2 {
-  max-width: 650px;
-  margin: 0.65rem 0 0;
-  font-size: clamp(2rem, 3.2vw, 2.85rem);
-  line-height: 1.07;
-  letter-spacing: -0.045em;
-  font-weight: 710;
+  max-width: 680px;
+  margin: 0.62rem 0 0;
+  font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+  line-height: 1.11;
+  letter-spacing: -0.035em;
+  font-weight: 650;
 }
 
 .heading > p {
-  max-width: 360px;
   margin: 0;
+  max-width: 340px;
   color: var(--muted);
   font-size: 0.88rem;
-  line-height: 1.62;
+  line-height: 1.65;
 }
 
-.ledger {
+.walletExperience {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
+  gap: clamp(1rem, 2.5vw, 1.8rem);
   align-items: stretch;
-  padding: clamp(1.3rem, 3vw, 2rem) 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
 
-.coinPanel {
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.35rem;
-  border-radius: 18px;
-  border: 1px solid rgba(85, 217, 241, 0.18);
-  background:
-    radial-gradient(circle at 76% 18%, rgba(85, 217, 241, 0.18), transparent 28%),
-    linear-gradient(160deg, rgba(128, 237, 200, 0.07), transparent 58%),
-    #081118;
-}
-
-.coinPanel > span {
-  color: var(--accent);
-  font-size: 0.68rem;
-  font-weight: 760;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.coinPanel strong {
-  margin-top: auto;
-  font-size: 4.8rem;
-  line-height: 0.9;
-  letter-spacing: -0.08em;
-  color: rgba(229, 248, 252, 0.92);
-}
-
-.coinPanel small {
-  max-width: 170px;
-  margin-top: 0.8rem;
-  color: var(--muted-2);
-  font-size: 0.7rem;
-  line-height: 1.45;
-}
-
-.flowWrap {
+.walletStage {
   position: relative;
-  min-width: 0;
-}
-
-.flow {
-  position: relative;
+  min-height: 570px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  grid-template-rows: auto 1fr auto auto;
+  overflow: hidden;
+  padding: clamp(1.3rem, 2.7vw, 1.9rem);
+  border: 1px solid rgba(187, 222, 235, 0.16);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgba(85, 217, 241, 0.045), transparent 34%),
+    #08131a;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.22);
 }
 
-.flow::before {
-  content: "";
+.walletGlow {
   position: absolute;
-  left: 7%;
-  right: 7%;
-  top: 40px;
-  height: 1px;
-  background: rgba(185, 218, 232, 0.12);
+  width: 340px;
+  height: 340px;
+  right: -120px;
+  top: -120px;
+  border-radius: 50%;
+  background: rgba(85, 217, 241, 0.08);
+  opacity: 0.55;
 }
 
-.flowProgressDesktop {
-  position: absolute;
-  z-index: 0;
-  left: 7%;
-  right: 7%;
-  top: 40px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  transform-origin: left center;
-}
-
-.flowProgressMobile {
-  display: none;
-}
-
-.step {
+.walletTop {
   position: relative;
-  min-width: 0;
-  padding: 0 1rem;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.node {
-  position: relative;
-  z-index: 1;
-  width: 80px;
-  height: 80px;
+.walletTop > div:first-child { display: grid; gap: 0.4rem; }
+.walletTop span { color: var(--muted-2); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.walletTop strong { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -0.06em; }
+
+.coinMark {
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
-  margin: 0 auto;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #dff8ff, #80edc8);
+  color: #061018;
+  font-weight: 830;
+  letter-spacing: -0.05em;
+}
+
+.walletOrbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+}
+
+.walletOrbit > i {
+  position: absolute;
+  width: min(70%, 250px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(85, 217, 241, 0.16);
   border-radius: 50%;
-  border: 1px solid rgba(202, 229, 239, 0.16);
-  background: #071018;
-  color: var(--accent);
-  font-size: 1rem;
+  transform-origin: center;
 }
 
-.stepCopy {
-  padding-top: 1.15rem;
-  text-align: center;
+.walletOrbit > i::before,
+.walletOrbit > i::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 20px rgba(85, 217, 241, 0.45);
 }
 
-.stepCopy > span {
-  color: var(--muted-2);
-  font-size: 0.62rem;
-  font-weight: 760;
+.walletOrbit > i::before { left: 13%; top: 15%; }
+.walletOrbit > i::after { right: 4%; bottom: 37%; background: var(--accent-2); }
+
+.walletOrbit > span {
+  position: absolute;
+  border: 1px solid rgba(185, 219, 232, 0.08);
+  border-radius: 50%;
+}
+.walletOrbit > span:nth-child(1) { width: 54%; aspect-ratio: 1; }
+.walletOrbit > span:nth-child(2) { width: 40%; aspect-ratio: 1; }
+.walletOrbit > span:nth-child(3) { width: 28%; aspect-ratio: 1; border-color: rgba(128, 237, 200, 0.12); }
+
+.orbitCore {
+  position: relative;
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  color: #061018;
+  background: linear-gradient(145deg, #dff8ff, #80edc8);
+  font-size: 1.35rem;
+  box-shadow: 0 18px 55px rgba(85, 217, 241, 0.13);
 }
 
-.stepCopy h3 {
-  margin: 0.28rem 0 0;
-  font-size: 1rem;
-  font-weight: 680;
+.receipt {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(4, 10, 14, 0.56);
 }
 
-.stepCopy p {
-  max-width: 175px;
-  margin: 0.45rem auto 0;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
+.receipt > span { color: var(--accent-2); font-size: 0.69rem; font-weight: 730; }
+.receipt > strong { color: #fff; font-size: 0.82rem; }
+.receipt > small { grid-column: 1 / -1; color: var(--muted); font-size: 0.72rem; line-height: 1.5; }
 
-.auditNote {
-  width: fit-content;
+.walletFooter {
   display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 1.3rem 0 0;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
   color: var(--muted-2);
-  font-size: 0.72rem;
+  font-size: 0.64rem;
 }
 
-.auditNote span {
+.stepRail {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.stepButton {
+  position: relative;
+  width: 100%;
+  min-height: 132px;
+  display: grid;
+  grid-template-columns: 48px 46px minmax(0, 1fr) 28px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.stepButton::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  z-index: 0;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(85, 217, 241, 0.065), rgba(128, 237, 200, 0.018) 70%, transparent);
+  transition: opacity 0.25s ease;
+}
+
+.activeStep::before,
+.stepButton:hover::before { opacity: 1; }
+
+.stepButton > * { position: relative; z-index: 1; }
+.stepIndex { color: var(--muted-2); font-size: 0.65rem; font-weight: 780; }
+
+.stepIcon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--accent);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.activeStep .stepIcon {
+  border-color: rgba(128, 237, 200, 0.28);
+  background: rgba(128, 237, 200, 0.08);
+  color: var(--accent-2);
+}
+
+.stepCopy { display: grid; gap: 0.22rem; }
+.stepCopy small { color: var(--muted-2); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.stepCopy strong { font-size: 1.08rem; font-weight: 680; }
+.stepCopy > span { color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+.stepArrow { justify-self: end; color: rgba(216, 238, 245, 0.42); }
+.activeStep .stepArrow { color: var(--accent-2); }
+
+.trustStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.trustStrip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted-2);
+  font-size: 0.68rem;
+}
+
+.trustStrip i {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -194,73 +262,37 @@
 }
 
 @media (max-width: 900px) {
-  .heading {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .ledger {
-    grid-template-columns: 1fr;
-  }
-
-  .coinPanel {
-    min-height: 210px;
-  }
+  .heading { grid-template-columns: 1fr; gap: 0.85rem; }
+  .walletExperience { grid-template-columns: 1fr; }
+  .walletStage { min-height: 500px; }
+  .stepButton { min-height: 112px; }
 }
 
-@media (max-width: 700px) {
-  .flow {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
+@media (max-width: 560px) {
+  .currencySection { padding-left: 1rem; padding-right: 1rem; }
+  .heading h2 { font-size: clamp(1.5rem, 6.8vw, 1.95rem); }
+  .walletStage { min-height: 470px; padding: 1rem; border-radius: 18px; }
+  .walletOrbit { min-height: 220px; }
+  .stepButton { grid-template-columns: 36px 42px 1fr; gap: 0.75rem; min-height: 108px; }
+  .stepArrow { display: none; }
+  .stepCopy > span { font-size: 0.73rem; }
+  .trustStrip { display: grid; }
+}
 
-  .flow::before {
-    left: 29px;
-    right: auto;
-    top: 30px;
-    bottom: 30px;
-    width: 1px;
-    height: auto;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .stepButton::before,
+  .stepIcon { transition: none; }
+}
 
-  .flowProgressDesktop {
-    display: none;
-  }
+.orbitSpin {
+  animation: walletOrbitSpin 14s linear infinite;
+  will-change: transform;
+}
 
-  .flowProgressMobile {
-    display: block;
-    position: absolute;
-    z-index: 0;
-    left: 29px;
-    top: 30px;
-    bottom: 30px;
-    width: 1px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-2));
-    transform-origin: center top;
-  }
+@keyframes walletOrbitSpin {
+  to { transform: rotate(360deg); }
+}
 
-  .step {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1rem;
-    align-items: center;
-    min-height: 105px;
-    padding: 0;
-  }
-
-  .node {
-    width: 58px;
-    height: 58px;
-    margin: 0;
-  }
-
-  .stepCopy {
-    padding: 0;
-    text-align: left;
-  }
-
-  .stepCopy p {
-    max-width: 320px;
-    margin: 0.35rem 0 0;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .orbitSpin { animation: none; }
 }

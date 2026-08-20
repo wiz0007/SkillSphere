@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import styles from "./Idea.module.scss";
 import { ideaCards } from "../../content/homeContent";
-import { premiumEase, revealUp, stagger, viewportOnce } from "../../utilities/motion";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
 const Idea = () => {
   const reduceMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className={styles.mainIdea} id="idea" aria-labelledby="idea-title">
@@ -18,54 +19,64 @@ const Idea = () => {
           variants={revealUp}
         >
           <span className={styles.eyebrow}>Why SkillSphere</span>
-          <h2 id="idea-title">A learning platform shaped around useful human guidance.</h2>
-          <p>Three principles keep the experience focused, continuous, and trustworthy.</p>
+          <h2 id="idea-title">Guidance that stays with the work.</h2>
+
+          <div className={styles.storyIndex} aria-label="Current principle">
+            {ideaCards.map((item, index) => (
+              <button
+                type="button"
+                key={item.id}
+                className={index === activeIndex ? styles.activeDot : ""}
+                onClick={() => document.getElementById(`idea-step-${item.id}`)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" })}
+                aria-label={`Go to principle ${index + 1}: ${item.label}`}
+              >
+                <span>{item.id}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.activeCaption} aria-live="polite">
+            <span>{ideaCards[activeIndex].accent}</span>
+            <strong>{ideaCards[activeIndex].label}</strong>
+          </div>
         </motion.header>
 
-        <motion.div
-          className={styles.principles}
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.18 }}
-          variants={stagger}
-        >
-          {ideaCards.map((item) => {
+        <div className={styles.storyPanels}>
+          {ideaCards.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.article
-                className={styles.principle}
+                id={`idea-step-${item.id}`}
+                className={styles.storyPanel}
                 key={item.id}
-                variants={{
-                  hidden: { opacity: 0, x: 42 },
-                  visible: {
-                    opacity: 1,
-                    x: 0,
-                    transition: { duration: 0.66, ease: premiumEase },
-                  },
-                }}
-                whileHover={reduceMotion ? undefined : { x: 8 }}
-                transition={{ duration: 0.28, ease: premiumEase }}
+                onViewportEnter={() => setActiveIndex(index)}
+                viewport={{ amount: 0.58 }}
+                initial={reduceMotion ? false : { opacity: 0.32, y: 28, scale: 0.985 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: reduceMotion ? 0 : 0.58, ease: premiumEase }}
               >
-                <div className={styles.meta}>
+                <div className={styles.panelTop}>
                   <span className={styles.number}>{item.id}</span>
-                  <motion.span
-                    className={styles.icon}
-                    whileHover={reduceMotion ? undefined : { rotate: 7, scale: 1.06 }}
-                    transition={{ duration: 0.25, ease: premiumEase }}
-                  >
-                    <Icon />
-                  </motion.span>
+                  <span className={styles.icon}><Icon /></span>
                 </div>
-                <div className={styles.copy}>
-                  <span className={styles.label}>{item.label}</span>
+
+                <div className={styles.panelVisual} aria-hidden="true">
+                  <div className={styles.orbitOne} />
+                  <div className={styles.orbitTwo} />
+                  <span className={styles.visualIcon}><Icon /></span>
+                  <span className={styles.visualLabel}>{item.accent}</span>
+                </div>
+
+                <div className={styles.panelCopy}>
+                  <span>{item.label}</span>
                   <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                  <small>{item.detail}</small>
                 </div>
-                <p>{item.copy}</p>
-                <span className={styles.rowArrow} aria-hidden="true">↗</span>
               </motion.article>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

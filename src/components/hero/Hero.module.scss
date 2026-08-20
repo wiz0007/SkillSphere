@@ -1,17 +1,18 @@
 .hero {
   position: relative;
-  min-height: 88svh;
+  min-height: clamp(680px, 100svh, 920px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background: #05090d;
+  background: #04080c;
+  isolation: isolate;
 }
 
 .mediaLayer,
 .backgroundVideo,
 .posterFallback,
 .overlay,
-.grain {
+.edgeGlow {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -20,86 +21,90 @@
 
 .mediaLayer {
   z-index: 0;
-  transform-origin: center;
+  height: 100%;
+  top: 0;
+  overflow: hidden;
 }
 
 .backgroundVideo {
+  z-index: 1;
+  display: block;
   object-fit: cover;
-  object-position: 58% center;
-  filter: saturate(0.74) contrast(1.04) brightness(0.72);
+  object-position: 54% center;
+
 }
 
 .posterFallback {
-  background-position: 58% center;
+  z-index: 0;
+  background-position: 56% center;
   background-size: cover;
+
 }
 
 .overlay {
-  z-index: 1;
+  z-index: 2;
   background:
-    linear-gradient(90deg, rgba(4, 8, 12, 0.92) 0%, rgba(4, 8, 12, 0.73) 39%, rgba(4, 8, 12, 0.24) 70%, rgba(4, 8, 12, 0.42) 100%),
-    linear-gradient(180deg, rgba(5, 9, 13, 0.12) 0%, rgba(5, 9, 13, 0.14) 56%, rgba(5, 9, 13, 0.9) 100%);
+    linear-gradient(90deg, rgba(3, 7, 11, 0.94) 0%, rgba(3, 7, 11, 0.8) 34%, rgba(3, 7, 11, 0.4) 62%, rgba(3, 7, 11, 0.28) 100%),
+    linear-gradient(180deg, rgba(4, 8, 12, 0.22) 0%, rgba(4, 8, 12, 0.08) 50%, rgba(4, 8, 12, 0.9) 100%);
 }
 
-.grain {
-  z-index: 2;
-  opacity: 0.12;
+.edgeGlow {
+  z-index: 3;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 0.7px, transparent 0.7px);
-  background-size: 5px 5px;
-  mix-blend-mode: soft-light;
+  background: radial-gradient(circle at 18% 72%, rgba(85, 217, 241, 0.1), transparent 28%);
 }
 
 .heroInner {
   position: relative;
-  z-index: 3;
-  width: min(calc(100% - 2rem), var(--container));
+  z-index: 4;
+  width: min(calc(100% - 2.5rem), var(--container));
   margin: 0 auto;
-  padding: 9rem 0 clamp(5rem, 8vw, 7rem);
+  padding: clamp(8rem, 14vh, 10rem) 0 clamp(6rem, 10vh, 7.5rem);
 }
 
 .content {
-  max-width: 610px;
+  max-width: 660px;
 }
 
 .eyebrow {
   width: fit-content;
   margin-bottom: 1rem;
-  color: rgba(235, 247, 251, 0.74);
-  font-size: 0.72rem;
-  font-weight: 760;
-  letter-spacing: 0.12em;
+  color: rgba(229, 242, 247, 0.76);
+  font-size: 0.7rem;
+  font-weight: 780;
+  letter-spacing: 0.135em;
   text-transform: uppercase;
 }
 
 .content h1 {
   margin: 0;
-  min-height: 1.08em;
+  min-height: 1.05em;
+  max-width: 12ch;
   color: #fff;
-  font-size: clamp(2.55rem, 4.45vw, 4.15rem);
-  line-height: 1.01;
-  letter-spacing: -0.052em;
+  font-size: clamp(2.65rem, 5.2vw, 4.85rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
   font-weight: 760;
   text-wrap: balance;
 }
 
 .cursor {
   display: inline-block;
-  width: 0.065em;
+  width: 0.055em;
   height: 0.78em;
-  margin-left: 0.08em;
+  margin-left: 0.07em;
   border-radius: 999px;
   background: var(--accent);
-  vertical-align: -0.04em;
+  vertical-align: -0.035em;
   animation: cursorBlink 0.9s steps(1) infinite;
 }
 
 .content p {
-  max-width: 535px;
+  max-width: 520px;
   margin: 1.2rem 0 0;
   color: rgba(224, 237, 243, 0.76);
-  font-size: clamp(0.98rem, 1.2vw, 1.06rem);
-  line-height: 1.68;
+  font-size: clamp(0.96rem, 1.25vw, 1.08rem);
+  line-height: 1.7;
 }
 
 .actions {
@@ -111,114 +116,154 @@
 }
 
 .primaryAction {
-  min-height: 46px;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1.18rem;
+  padding: 0 1.28rem;
   border-radius: 999px;
-  color: #071018;
-  background: #e5f9ff;
+  color: #061018;
+  background: #e6f9ff;
   text-decoration: none;
-  font-size: 0.89rem;
-  font-weight: 760;
-  box-shadow: 0 10px 30px rgba(99, 218, 242, 0.12);
+  font-size: 0.88rem;
+  font-weight: 780;
+  box-shadow: 0 12px 34px rgba(85, 217, 241, 0.13);
 }
 
 .textAction {
-  color: rgba(239, 248, 251, 0.84);
+  color: rgba(240, 249, 252, 0.88);
   text-decoration: none;
-  font-size: 0.89rem;
-  font-weight: 670;
+  font-size: 0.88rem;
+  font-weight: 690;
 }
 
-.textAction span {
-  margin-left: 0.34rem;
-}
+.textAction span { margin-left: 0.32rem; }
 
-.heroFooter {
+.signal {
   position: absolute;
-  z-index: 3;
-  right: max(1rem, calc((100vw - var(--container)) / 2));
-  bottom: 2.2rem;
-  display: flex;
+  z-index: 4;
+  right: max(1.25rem, calc((100vw - var(--container)) / 2));
+  bottom: 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.72rem;
   align-items: center;
-  gap: 0;
-  overflow: hidden;
-  border: 1px solid rgba(223, 241, 248, 0.14);
-  border-radius: 999px;
-  background: rgba(4, 9, 13, 0.52);
-  backdrop-filter: blur(16px);
+  max-width: 320px;
+  padding: 0.78rem 0.95rem;
+  border: 1px solid rgba(218, 239, 247, 0.13);
+  border-radius: 14px;
+  background: rgba(5, 11, 16, 0.9);
 }
 
-.heroFooter span {
-  padding: 0.65rem 0.9rem;
-  color: rgba(224, 237, 244, 0.7);
-  font-size: 0.69rem;
-  font-weight: 650;
+.signalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 5px rgba(128, 237, 200, 0.09);
 }
 
-.heroFooter span + span {
-  border-left: 1px solid rgba(223, 241, 248, 0.11);
-}
+.signal div { display: grid; gap: 0.14rem; }
+.signal strong { font-size: 0.74rem; font-weight: 720; color: rgba(245, 251, 253, 0.9); }
+.signal div span { font-size: 0.67rem; color: rgba(185, 207, 218, 0.62); }
 
 @keyframes cursorBlink {
   0%, 44% { opacity: 1; }
   45%, 100% { opacity: 0; }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 900px) {
   .hero {
-    min-height: 84svh;
+    min-height: max(720px, 100svh);
+    align-items: flex-end;
+  }
+
+  .mediaLayer {
+    height: 100%;
+    top: 0;
+  }
+
+  .backgroundVideo,
+  .posterFallback {
+    object-position: 62% center;
+    background-position: 62% center;
   }
 
   .overlay {
     background:
-      linear-gradient(180deg, rgba(4, 9, 14, 0.23) 0%, rgba(4, 9, 14, 0.4) 38%, rgba(4, 9, 14, 0.94) 100%),
-      linear-gradient(90deg, rgba(4, 9, 14, 0.62), rgba(4, 9, 14, 0.16));
+      linear-gradient(180deg, rgba(4, 8, 12, 0.2) 0%, rgba(4, 8, 12, 0.34) 35%, rgba(4, 8, 12, 0.92) 78%, #04080c 100%),
+      linear-gradient(90deg, rgba(4, 8, 12, 0.65), rgba(4, 8, 12, 0.12));
   }
 
   .heroInner {
-    padding-bottom: 5.4rem;
+    width: min(calc(100% - 2rem), var(--container));
+    padding: 7.2rem 0 6.8rem;
   }
 
-  .heroFooter {
+  .content {
+    max-width: 560px;
+  }
+
+  .signal {
     left: 1rem;
     right: auto;
-    bottom: 1.5rem;
+    bottom: 1.1rem;
+    max-width: calc(100% - 2rem);
   }
 }
 
 @media (max-width: 560px) {
   .hero {
-    min-height: 82svh;
+    min-height: max(680px, 100svh);
   }
 
   .backgroundVideo,
   .posterFallback {
-    object-position: 64% center;
-    background-position: 64% center;
+    object-position: 68% center;
+    background-position: 68% center;
+  }
+
+  .heroInner {
+    width: min(calc(100% - 1.5rem), var(--container));
+    padding-top: 6.8rem;
+    padding-bottom: 6.4rem;
   }
 
   .content h1 {
-    font-size: clamp(2.3rem, 10.5vw, 3.35rem);
+    max-width: 10ch;
+    font-size: clamp(2.35rem, 12vw, 3.35rem);
   }
 
   .content p {
     max-width: 34ch;
+    margin-top: 1rem;
+    font-size: 0.95rem;
   }
 
-  .heroFooter {
+  .actions {
+    gap: 0.85rem;
+    margin-top: 1.45rem;
+  }
+
+  .primaryAction {
+    min-height: 45px;
+    padding: 0 1.05rem;
+    font-size: 0.84rem;
+  }
+
+  .textAction { font-size: 0.84rem; }
+
+  .signal {
     display: none;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .backgroundVideo {
-    display: none;
-  }
+@media (max-width: 380px) {
+  .heroInner { width: calc(100% - 1.2rem); }
+  .content h1 { font-size: 2.2rem; }
+}
 
-  .cursor {
-    animation: none;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .backgroundVideo { display: none; }
+  .cursor { animation: none; }
 }
