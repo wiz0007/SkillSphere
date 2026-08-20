@@ -22,10 +22,27 @@ const Navbar = () => {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-    handleScroll();
+    let frame = 0;
+    let lastValue = window.scrollY > 24;
+    setIsScrolled(lastValue);
+
+    const handleScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const nextValue = window.scrollY > 24;
+        if (nextValue !== lastValue) {
+          lastValue = nextValue;
+          setIsScrolled(nextValue);
+        }
+      });
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {

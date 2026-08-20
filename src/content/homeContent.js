@@ -18,23 +18,11 @@ import {
   FaVideo,
   FaWallet,
 } from "react-icons/fa";
-import ayushFallback from "../assets/team/ayushImg.jpg";
+import myPic from "../assets/MyPic.jpeg";
 import courseWeb from "../assets/courses/course-web.webp";
 import courseDesign from "../assets/courses/course-design.webp";
 import courseMedia from "../assets/courses/course-media.webp";
 import courseGrowth from "../assets/courses/course-growth.webp";
-
-const profileAssets = import.meta.glob(
-  "../assets/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
-  { eager: true, import: "default" },
-);
-
-const preferredProfileImage =
-  profileAssets["../assets/MyPic.jpeg"] ||
-  profileAssets["../assets/MyPic.jpg"] ||
-  profileAssets["../assets/mypic.jpeg"] ||
-  profileAssets["../assets/mypic.jpg"] ||
-  ayushFallback;
 
 export const ideaCards = [
   {
@@ -42,21 +30,27 @@ export const ideaCards = [
     icon: FaChalkboardTeacher,
     label: "Learn live",
     title: "Ask a person, not a feed.",
-    copy: "Book focused sessions and get practical guidance in real time.",
+    copy: "Book a focused session when you need context, feedback, or a second pair of eyes.",
+    accent: "1:1 guidance",
+    detail: "Move from searching for answers to working through the problem with someone who has done it before.",
   },
   {
     id: "02",
     icon: FaUsers,
     label: "Keep going",
     title: "Learning stays connected.",
-    copy: "Continue through groups, conversations, and shared learning spaces.",
+    copy: "Carry a learning goal from the live session into chat, groups, and the next milestone.",
+    accent: "One learning thread",
+    detail: "The context around a session should not disappear when the call ends. SkillSphere keeps the journey connected.",
   },
   {
     id: "03",
     icon: FaShieldAlt,
     label: "Exchange clearly",
     title: "Trust is part of the flow.",
-    copy: "SkillCoin keeps bookings and mentor payouts easy to follow.",
+    copy: "Bookings and mentor payouts stay understandable through the SkillCoin wallet and audit trail.",
+    accent: "Clear transaction flow",
+    detail: "A transparent exchange makes it easier for learners and mentors to focus on the work instead of the mechanics.",
   },
 ];
 
@@ -108,17 +102,81 @@ export const courseCategories = [
 ];
 
 export const communityFeatures = [
-  { icon: FaVideo, title: "Live sessions", copy: "Meet mentors face to face." },
-  { icon: FaComments, title: "Conversation", copy: "Continue learning in chat." },
-  { icon: FaUsers, title: "Groups", copy: "Learn with people chasing the same goal." },
-  { icon: FaHandsHelping, title: "Mentor feedback", copy: "Get help when you are blocked." },
+  {
+    id: "session",
+    icon: FaVideo,
+    eyebrow: "Live rooms",
+    title: "Meet live.",
+    copy: "Share the screen and work through the problem together.",
+    meta: "Video · Screen share · Session context",
+    visual: "room",
+  },
+  {
+    id: "conversation",
+    icon: FaComments,
+    eyebrow: "Conversation",
+    title: "Keep the thread.",
+    copy: "Continue in chat without starting the explanation over.",
+    meta: "Chat · Attachments · Follow-up",
+    visual: "chat",
+  },
+  {
+    id: "groups",
+    icon: FaUsers,
+    eyebrow: "Learning groups",
+    title: "Learn together.",
+    copy: "Join focused groups around a shared skill or goal.",
+    meta: "Groups · Shared goals · Community",
+    visual: "group",
+  },
+  {
+    id: "feedback",
+    icon: FaHandsHelping,
+    eyebrow: "Mentor feedback",
+    title: "Get focused feedback.",
+    copy: "Bring a blocker back to a mentor and get a clear next step.",
+    meta: "Review · Guidance · Next step",
+    visual: "feedback",
+  },
 ];
 
 export const currencySteps = [
-  { icon: FaWallet, title: "Add", copy: "Top up your SkillCoin wallet." },
-  { icon: FaCoins, title: "Book", copy: "Use coins for a course or live session." },
-  { icon: FaLock, title: "Hold", copy: "Value stays protected during the session flow." },
-  { icon: FaBookOpen, title: "Complete", copy: "Mentor payout is released after completion." },
+  {
+    icon: FaWallet,
+    title: "Add",
+    kicker: "Fund the wallet",
+    copy: "Top up SkillCoin before you book.",
+    status: "Wallet ready",
+    amount: "+250 SC",
+    balance: "250 SC",
+  },
+  {
+    icon: FaCoins,
+    title: "Book",
+    kicker: "Reserve a session",
+    copy: "Use coins for a course or live mentor session.",
+    status: "Booking created",
+    amount: "−80 SC",
+    balance: "170 SC",
+  },
+  {
+    icon: FaLock,
+    title: "Hold",
+    kicker: "Protect the exchange",
+    copy: "The booking value stays protected during the session flow.",
+    status: "80 SC protected",
+    amount: "On hold",
+    balance: "170 SC",
+  },
+  {
+    icon: FaBookOpen,
+    title: "Complete",
+    kicker: "Release on completion",
+    copy: "The mentor payout is released when the session is completed.",
+    status: "Session settled",
+    amount: "80 SC released",
+    balance: "170 SC",
+  },
 ];
 
 export const supportItems = [
@@ -126,16 +184,19 @@ export const supportItems = [
     icon: FaHeadset,
     title: "Platform support",
     copy: "Get help with accounts, bookings, payments, courses, and general platform issues.",
+    response: "Best for account, booking, or access questions.",
   },
   {
     icon: FaShieldAlt,
     title: "Fair dispute review",
     copy: "Disputes can be reviewed with the available booking and transaction context.",
+    response: "A structured path when a session or transaction needs review.",
   },
   {
     icon: FaLock,
     title: "Protected records",
     copy: "Transaction and audit records help preserve accountability across the learning flow.",
+    response: "Useful when the history of an exchange needs to be checked.",
   },
 ];
 
@@ -144,7 +205,7 @@ export const developerProfile = {
   role: "Full-Stack Developer & Product Builder",
   bio: "Designing and building SkillSphere across product experience, frontend systems, backend services, real-time features, and platform architecture.",
   scope: ["Product", "Frontend", "Backend", "Realtime"],
-  image: preferredProfileImage,
+  image: myPic,
   links: [
     { icon: FaLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ayushmaan-mishra-254020257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
     { icon: FaTwitter, label: "X", href: "https://x.com/Ayushma44434272?t=diX25cD-oLYEhuE_-7aLQA&s=08" },

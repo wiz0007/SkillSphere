@@ -2,98 +2,102 @@ import React, { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import styles from "./HelpCenter.module.scss";
 import { supportItems } from "../../content/homeContent";
-import { premiumEase, revealUp, stagger, viewportOnce } from "../../utilities/motion";
+import { MAIN_SITE_URL } from "../../constants/site";
+import { premiumEase, revealUp, viewportOnce } from "../../utilities/motion";
 
 const HelpCenter = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
+  const active = supportItems[activeIndex];
+  const ActiveIcon = active.icon;
 
   return (
     <section className={styles.helpCenter} id="support" aria-labelledby="support-title">
       <div className={styles.inner}>
-        <motion.div
-          className={styles.intro}
+        <motion.header
+          className={styles.heading}
           initial={reduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={viewportOnce}
           variants={revealUp}
         >
-          <span>Support</span>
-          <h2 id="support-title">Help that is easy to find.</h2>
-          <p>Clear support paths for platform, booking, payment, and record-related issues.</p>
-          <motion.div
-            className={styles.availability}
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.8 }}
-            transition={{ duration: 0.55, delay: 0.15, ease: premiumEase }}
-          >
-            <strong>24/7</strong>
-            <span>Support access</span>
-          </motion.div>
-        </motion.div>
+          <div>
+            <span className={styles.eyebrow}>Support</span>
+            <h2 id="support-title">Help, with the right context.</h2>
+          </div>
+        </motion.header>
 
-        <motion.div
-          className={styles.accordion}
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.18 }}
-          variants={stagger}
-        >
-          {supportItems.map((item, index) => {
-            const Icon = item.icon;
-            const isOpen = openIndex === index;
-            const panelId = `support-panel-${index}`;
-            const buttonId = `support-button-${index}`;
-
-            return (
-              <motion.div className={styles.item} key={item.title} variants={revealUp}>
+        <div className={styles.supportDesk}>
+          <div className={styles.routeList} aria-label="Support routes">
+            {supportItems.map((item, index) => {
+              const Icon = item.icon;
+              const isActive = activeIndex === index;
+              return (
                 <button
-                  id={buttonId}
                   type="button"
-                  className={styles.summary}
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
+                  aria-pressed={isActive}
+                  className={`${styles.route} ${isActive ? styles.activeRoute : ""}`}
+                  onClick={() => setActiveIndex(index)}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  key={item.title}
                 >
-                  <motion.span
-                    className={styles.icon}
-                    animate={isOpen && !reduceMotion ? { rotate: -4, scale: 1.04 } : { rotate: 0, scale: 1 }}
-                    transition={{ duration: 0.25, ease: premiumEase }}
-                  >
-                    <Icon />
-                  </motion.span>
-                  <span>{item.title}</span>
-                  <motion.span
-                    className={styles.symbol}
-                    aria-hidden="true"
-                    animate={isOpen && !reduceMotion ? { rotate: 45 } : { rotate: 0 }}
-                    transition={{ duration: 0.25, ease: premiumEase }}
-                  >
-                    +
-                  </motion.span>
+                  <span className={styles.routeIndex}>0{index + 1}</span>
+                  <span className={styles.routeIcon}><Icon /></span>
+                  <span className={styles.routeCopy}>
+                    <strong>{item.title}</strong>
+                    <small>{item.response}</small>
+                  </span>
+                  <span className={styles.routeArrow} aria-hidden="true">↗</span>
                 </button>
+              );
+            })}
+          </div>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      className={styles.panel}
-                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-                      transition={{ duration: reduceMotion ? 0 : 0.34, ease: premiumEase }}
-                    >
-                      <p>{item.copy}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+          <motion.div
+            className={styles.detailPanel}
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: reduceMotion ? 0 : 0.65, ease: premiumEase }}
+          >
+            <div className={styles.detailTop}>
+              <span>Support workspace</span>
+              <span className={styles.online}><i /> Available</span>
+            </div>
+
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                className={styles.detailBody}
+                key={active.title}
+                initial={reduceMotion ? false : { opacity: 0, x: 18 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduceMotion ? undefined : { opacity: 0, x: -14 }}
+                transition={{ duration: reduceMotion ? 0 : 0.32, ease: premiumEase }}
+              >
+                <div className={styles.detailIcon}><ActiveIcon /></div>
+                <span className={styles.detailLabel}>{active.title}</span>
+                <h3>{active.response}</h3>
+                <p>{active.copy}</p>
+
+                <div className={styles.contextGrid}>
+                  <div><span>01</span><strong>Bring context</strong><small>Booking, account, or transaction details.</small></div>
+                  <div><span>02</span><strong>Keep a record</strong><small>Support stays tied to the relevant activity.</small></div>
+                </div>
               </motion.div>
-            );
-          })}
-        </motion.div>
+            </AnimatePresence>
+
+            <div className={styles.detailFooter}>
+              <span>Need to open the platform?</span>
+              <motion.a
+                href={MAIN_SITE_URL}
+                whileHover={reduceMotion ? undefined : { x: 4 }}
+                transition={{ duration: 0.22, ease: premiumEase }}
+              >
+                Go to SkillSphere <span aria-hidden="true">→</span>
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
